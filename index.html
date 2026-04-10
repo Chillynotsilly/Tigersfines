@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newcastle Tigers HC — 2026 Fines Register</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#D4A843;--gb:#F0C75E;--gd:#A67C2E;--blk:#0D0D0D;--dk:#151515;--card:#1C1C1C;--ch:#262626;--txt:#F0EDE8;--dim:#8A8580;--grn:#5CBF6E;--red:#E05A4F;--bdr:rgba(212,168,67,0.12)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Source Sans 3',sans-serif;background:var(--blk);color:var(--txt);min-height:100vh;overflow-x:hidden}
+  .pw-inline{display:inline-flex;align-items:center;gap:.4rem}
+  .pw-inline input{font-family:'Source Sans 3',sans-serif;font-size:.75rem;padding:.25rem .5rem;background:var(--blk);border:1px solid var(--bdr);border-radius:6px;color:var(--txt);outline:none;width:120px;letter-spacing:1px}
+  .pw-inline input:focus{border-color:var(--gold)}
+  .pw-inline button{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:.25rem .6rem;border:none;border-radius:6px;cursor:pointer;font-size:.68rem;background:linear-gradient(135deg,var(--gold),var(--gd));color:var(--blk);white-space:nowrap}
+  .pw-err-inline{font-size:.7rem;color:var(--red);margin-left:.3rem}
+  .role-bar{display:flex;justify-content:flex-end;align-items:center;gap:.6rem;padding:.5rem 1.5rem;background:var(--dk);border-bottom:1px solid var(--bdr);font-size:.75rem}
+  .role-badge{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;padding:.25rem .7rem;border-radius:12px;font-size:.7rem}
+  .role-badge.admin{background:var(--gold);color:var(--blk)}
+  .role-badge.viewer{background:rgba(212,168,67,0.1);color:var(--dim)}
+  .role-switch{background:none;border:none;color:var(--dim);cursor:pointer;font-size:.75rem;font-family:'Source Sans 3',sans-serif;text-decoration:underline;transition:color .2s}
+  .role-switch:hover{color:var(--gb)}
+  .hero{background:linear-gradient(170deg,#0D0D0D 0%,#1A150A 40%,#0D0D0D 100%);padding:2rem 1.5rem 1.6rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-80%;left:10%;width:80%;height:250%;background:radial-gradient(ellipse at center,rgba(212,168,67,0.06) 0%,transparent 55%);pointer-events:none}
+  .hero-badge{display:inline-flex;align-items:center;gap:1.2rem;position:relative;z-index:2}
+  .club-logo{width:80px;height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(212,168,67,0.3))}
+  .hero-text h1{font-family:'Oswald',sans-serif;font-size:clamp(1.6rem,5vw,2.6rem);font-weight:700;text-transform:uppercase;letter-spacing:2px;line-height:1.05}
+  .hero-text h1 span{color:var(--gb)}
+  .hero-text .sub{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--dim);margin-top:2px}
+  .tabs{display:flex;justify-content:center;background:var(--dk);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--bdr)}
+  .tab-btn{font-family:'Oswald',sans-serif;font-size:.9rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:.9rem 1.2rem;background:none;border:none;color:var(--dim);cursor:pointer;border-bottom:3px solid transparent;transition:color .2s}
+  .tab-btn:hover{color:var(--txt)}
+  .tab-btn.active{color:var(--gb);border-bottom-color:var(--gold)}
+  .tab-panel{display:none}.tab-panel.active{display:block}
+  .con{max-width:800px;margin:0 auto;padding:1.5rem}
+  .sec{font-family:'Oswald',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding:1.4rem 0 .5rem;display:flex;align-items:center;gap:.7rem}
+  .sec::after{content:'';flex:1;height:1px;background:var(--bdr)}
+  .f-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:.8rem 1rem;margin:.2rem 0;border-radius:8px;transition:background .15s}
+  .f-row:hover{background:var(--ch)}
+  .f-name{font-weight:600;font-size:.95rem;line-height:1.3}
+  .f-note{font-size:.78rem;color:var(--dim);margin-top:2px;line-height:1.35}
+  .f-amt{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.05rem;color:var(--gb);white-space:nowrap;text-align:right}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin-bottom:1.5rem}
+  .stat{background:var(--card);border-radius:10px;padding:1.1rem;text-align:center;border:1px solid var(--bdr)}
+  .stat-v{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;color:var(--gb)}
+  .stat-l{font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);margin-top:2px}
+  .form-grid{display:grid;gap:.5rem;margin-bottom:.5rem}
+  .r2{grid-template-columns:1fr 1fr}.r3{grid-template-columns:100px 1fr}
+  .form-act{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;align-items:stretch}
+  input,select{font-family:'Source Sans 3',sans-serif;font-size:.9rem;padding:.65rem .9rem;background:var(--card);border:1px solid var(--bdr);border-radius:8px;color:var(--txt);outline:none;transition:border .2s;width:100%}
+  input:focus,select:focus{border-color:var(--gold)}
+  select option{background:var(--card);color:var(--txt)}
+  .btn{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:.65rem 1.2rem;background:linear-gradient(135deg,var(--gold),var(--gd));color:var(--blk);border:none;border-radius:8px;cursor:pointer;font-size:.85rem;white-space:nowrap;transition:box-shadow .2s}
+  .btn:hover{box-shadow:0 4px 16px rgba(212,168,67,0.35)}
+  .btn-sm{font-size:.75rem;padding:.45rem .9rem;border-radius:6px}
+  .tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:1rem}
+  .tag{font-family:'Oswald',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:.4rem .9rem;border-radius:20px;border:1px solid var(--bdr);background:transparent;color:var(--dim);cursor:pointer;transition:all .2s}
+  .tag:hover{border-color:var(--gd);color:var(--txt)}
+  .tag.on{background:var(--gold);color:var(--blk);border-color:var(--gold)}
+  .lb{margin-top:.5rem}
+  .lb-i{display:grid;grid-template-columns:2.2rem 1fr auto auto;align-items:center;gap:.7rem;padding:.85rem 1rem;margin:.3rem 0;background:var(--card);border-radius:10px;border:1px solid transparent;transition:border .2s,background .2s}
+  .lb-i:hover{border-color:var(--bdr);background:var(--ch)}
+  .lb-r{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.1rem;text-align:center;color:var(--dim)}
+  .lb-i:nth-child(1) .lb-r{color:var(--gb)}
+  .lb-i:nth-child(2) .lb-r{color:#BDC3C7}
+  .lb-i:nth-child(3) .lb-r{color:#CD7F32}
+  .lb-n{font-weight:600;font-size:.95rem}.lb-c{font-size:.8rem;color:var(--dim)}
+  .lb-t{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.15rem;color:var(--gb)}
+  .log-gh{font-family:'Oswald',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gd);padding:.8rem 1rem .3rem}
+  .log-e{display:grid;grid-template-columns:1fr auto auto;align-items:start;gap:.7rem;padding:.6rem 1rem;margin:.1rem 0;border-radius:8px;font-size:.86rem;transition:background .15s}
+  .log-e:hover{background:rgba(212,168,67,0.04)}
+  .log-p{font-weight:600}.log-f{color:var(--dim);font-size:.82rem}
+  .log-cmt{font-size:.78rem;color:var(--gd);margin-top:3px;font-style:italic;line-height:1.3}
+  .log-a{font-family:'Oswald',sans-serif;font-weight:600;color:var(--gb);white-space:nowrap}
+  .log-x{background:none;border:none;color:var(--dim);cursor:pointer;font-size:.9rem;padding:2px;border-radius:4px;transition:color .15s}
+  .log-x:hover{color:var(--red)}
+  .empty{text-align:center;padding:2.5rem 1rem;color:var(--dim)}
+  .empty .ico{font-size:2.2rem;margin-bottom:.6rem}
+  .coin-wrap{text-align:center;margin-top:1.5rem;padding:2.5rem 1.5rem;background:var(--card);border-radius:14px;border:1px solid var(--bdr)}
+  .coin-wrap h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:3px;color:var(--gb);font-size:1.2rem}
+  .coin-wrap p{font-size:.85rem;color:var(--dim);margin:.4rem 0 1.5rem}
+  .coin{width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f7d794,#D4A843 55%,#A67C2E);box-shadow:0 4px 20px rgba(212,168,67,0.3),inset 0 -4px 10px rgba(0,0,0,0.25),inset 0 2px 4px rgba(255,255,255,0.15);display:inline-flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;color:#6B4E0A;cursor:pointer;transition:transform .1s;user-select:none}
+  .coin:hover{transform:scale(1.06)}
+  .coin.flip{animation:cf .8s ease-out}
+  @keyframes cf{0%{transform:rotateY(0) scale(1)}50%{transform:rotateY(540deg) scale(1.15)}100%{transform:rotateY(1080deg) scale(1)}}
+  .c-res{font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:700;min-height:2rem;margin-top:.8rem}
+  .c-res.win{color:var(--grn)}.c-res.lose{color:var(--red)}
+  .add-round{display:flex;gap:.5rem;align-items:center;margin-bottom:1rem}
+  .add-round input{flex:1}
+  .viewer-msg{background:rgba(212,168,67,0.06);border:1px solid var(--bdr);border-radius:10px;padding:1.2rem;text-align:center;margin-bottom:1.5rem;font-size:.85rem;color:var(--dim)}
+  .viewer-msg strong{color:var(--gb)}
+  .sync-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px}
+  .sync-dot.on{background:var(--grn);box-shadow:0 0 6px rgba(92,191,110,0.5)}
+  .sync-dot.off{background:var(--red)}
+  .audit-e{display:grid;grid-template-columns:auto 1fr auto;gap:.8rem;padding:.7rem 1rem;margin:.15rem 0;border-radius:8px;font-size:.84rem;align-items:start}
+  .audit-e:nth-child(odd){background:rgba(255,255,255,0.015)}
+  .audit-badge{font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:.2rem .6rem;border-radius:10px;white-space:nowrap}
+  .audit-badge.add{background:rgba(92,191,110,0.15);color:var(--grn)}
+  .audit-badge.del{background:rgba(224,90,79,0.15);color:var(--red)}
+  .audit-badge.seed{background:rgba(212,168,67,0.15);color:var(--gold)}
+  .audit-detail{line-height:1.4}
+  .audit-detail .player{font-weight:600}
+  .audit-detail .info{color:var(--dim);font-size:.8rem}
+  .audit-time{font-size:.75rem;color:var(--dim);white-space:nowrap;text-align:right}
+  .audit-filter{margin-bottom:1rem}
+  .footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--dim);letter-spacing:1px;border-top:1px solid var(--bdr);margin-top:2rem}
+  /* PAID TAB */
+  .paid-i{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:.7rem;padding:.85rem 1rem;margin:.3rem 0;background:var(--card);border-radius:10px;border:1px solid transparent;transition:border .2s}
+  .paid-i:hover{border-color:var(--bdr);background:var(--ch)}
+  .paid-n{font-weight:600;font-size:.95rem}
+  .paid-sub{font-size:.78rem;color:var(--dim);margin-top:2px}
+  .paid-col{font-family:'Oswald',sans-serif;font-weight:700;font-size:1rem;text-align:right;white-space:nowrap}
+  .paid-col.fined{color:var(--dim)}
+  .paid-col.paid{color:var(--grn)}
+  .paid-col.owed{font-size:1.1rem;color:var(--gb)}
+  .paid-col.clear{color:var(--grn)}
+  .pay-form{display:flex;gap:.5rem;margin-top:.5rem;flex-wrap:wrap}
+  .pay-form input{max-width:90px}
+  .paid-bar-wrap{height:4px;background:var(--bdr);border-radius:2px;margin-top:5px;overflow:hidden;width:100%}
+  .paid-bar-fill{height:100%;background:linear-gradient(90deg,var(--grn),#7de08a);border-radius:2px;transition:width .4s}
+  .paid-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin-bottom:1.5rem}
+  .paid-hdr{display:grid;grid-template-columns:1fr auto auto auto;gap:.7rem;padding:.3rem 1rem;font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
+  .paid-hdr span{text-align:right}
+  .tally{margin-top:.5rem}
+  .tally-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:.7rem;padding:.6rem 1rem;margin:.15rem 0;border-radius:8px;font-size:.88rem}
+  .tally-row:nth-child(odd){background:rgba(255,255,255,0.015)}
+  .tally-name{font-weight:600;font-size:.9rem}
+  .tally-count{font-size:.8rem;color:var(--dim)}
+  .tally-total{font-family:'Oswald',sans-serif;font-weight:700;font-size:1rem;color:var(--gb);text-align:right}
+  .tally-bar{height:4px;background:var(--bdr);border-radius:2px;margin-top:4px;overflow:hidden}
+  .tally-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gb));border-radius:2px;transition:width .3s}
+  .footer span{color:var(--gd)}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:#2a2a4a;color:#cbd5e1;padding:10px 20px;border-radius:8px;font-size:13px;border:1px solid #3a3a5a;transition:transform .3s ease;z-index:200}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  @media(max-width:600px){
+    .r2{grid-template-columns:1fr!important}
+    .form-act{flex-direction:column}
+    .con{padding:1rem}.hero{padding:1.5rem 1rem 1.2rem}
+    .club-logo{width:60px;height:60px}
+    .tab-btn{padding:.8rem .55rem;font-size:.72rem;letter-spacing:1px}
+    .role-bar{padding:.5rem 1rem}
+    .audit-e{grid-template-columns:1fr;gap:.3rem}
+    .audit-time{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<div class="role-bar" id="role-bar">
+  <span id="sync-status"><span class="sync-dot on"></span>Live</span>
+  <span style="flex:1"></span>
+  <span id="auth-area">
+    <span class="pw-inline">
+      <input type="password" id="pw-input" placeholder="Password..." autocomplete="off" onkeydown="if(event.key==='Enter')tryLogin()">
+      <button onclick="tryLogin()">Unlock Admin</button>
+      <span class="pw-err-inline" id="pw-err"></span>
+    </span>
+  </span>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAADICAYAAABWD1tBAAA3iklEQVR42u2deXwU9f3/X5+Z3Z3PzO7mJIT78kBBBAVvK2BtPVq12oYeVq2tX+192du2gdpvq19/Vq1Wq9UqqGjXIniByJFAOBJIIBASCEcOCLmTTfac3Z2Z9++PnYElJoCttrZ8no/HEnZ2PvM55v15f96f9+c9nwEEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIAAAMNEE7x8iyHgVQC0I80Es3Ypk/8NAwPz5YFOnghUBKC14bzvPmQPCqwCKQPPnA/MHXEcg+EgRKIbnQ9NCDCCCRCVwUQlcFIBMxZCIhIISGv/fp+UlxmDtfMM3e8Qwo4gk6Y263e69B+pcPXc+WJgA6pIAMGbMGPXHX4u5Z4ynbJ/PGu7zG7mGyXItw1IBADKQSDJzwnB0HOhgScaoty9o9S5b6Qs98Wp3ZCiFTwQJpZAwBzR/PmjBAljirgjB/7CFnuFVSJgCGVNBoUrl3qwCqRgJQiRM3ckki3g1Cpkm5HiCDVcU8qoK02Q/AAWAK6OlHbk2ARgAkoAZBeIJiqUMdtAwcAgkNSQNa280LtUHw+66i+fNOASsM95TplLIKIXFRCcQgv+vYs3z3qnnnWP+xuPCNV6FNFBam8di6DdN1k0WtScN1gZCW9JgwSzN6o7pEhEg5/hN16EO19hcv+UyDDZM8VAOk1CoeGgGz864Nal0R4lGqNe02PZYklXEYmzTwXa+Y+6tvS3HzDkAizExPzhZXKIJhqa4GNJnZmRn5eSaIyXTGmtYGONxYbjbZY0yTEtLxlgqTtC9Y0iDBUAF9D7WsHkrv+nT3+5rPvZqRfJdd632Pf10sD/9PfkeHdRWpuwY4aUpegSWJJNEFlg0xpZKMgrdbrpgxEh8HG5CYX403L9N2Z5IyO/WN7hfZqy/IdMcE3dOaPx/3LQBpGWPZPtHjaZPjS5MzdY4zfC4abLXz7LgBsAIYEC4Ax3JFNvl91E0HmcuyBhhpmDGk2yh4sIkj0LXMmASCIqeRAqEoORCS9Jg1Xocb0zMja/CTCQBmN3lynPDRuL2RB90JRu8u5U9W3CZficA3H77eP6Deb3jCnzmzaNGm7+HAUBjsKJAX0h6+Lffy7v34fKWOAUgs3kwxV0Ugv/+7PgigLFjBWf8+PH8tUe6puZl4xpVoTvyc6xxZgrEZEiJFA7390t/UxRa3tklj/L7aU5Olnlz1kg2LNkDxHSsTKXYiv6wtDMckVoOdwFTTrc4k61JMpMmHmyTgnsbaflX7410bwlo0889y6qUGVlulbnr6/GFydfpf0ctZHbO0SEiWM535wyns2K96NINVp43DNdHYqxp13b5uktuj+wuKYFr7lwY4q4KjuutsW3kDBNnpNawxndFx2Zlfm8FL4lsU/qphRN1cKImTnq1Qokd6Q/tUYiaFKJ9ClErJzqoEO1TrGCFUhp4vMB3sgpoVyDtJj1cyn9CjQrRfsVoXKN9lQiMStImKRE8RHAfWO09N7VX6YpsU/oAoOY139mhGr4itEONH1qvXgQAFDi2TgKh8Z1FJpZpD5cECnyThsU+5febRW6ZLvByNo4pBCiA3o1UPC79PZpEQ0KXdvlU61vDR1qXJ6KwGEBgMCQX3NEIq5ElGu8fyXKSfRTr7pFvGj079q7TwebPT+c1HwCmgqEI+MMPx3hGjO7z3vKjSDftgoedg2TrOvXZkefRV7tq8OTwy/RvEkG2y3pk8tqwwjN5xAhpXV8ffjxqrv4CAHRXaLdbBn7bH5LnnXFteLOw+YXgD8rKRYXeyWPCczSNPueS8DHGSDWSrNGrWpe6XLAkN2AY6NrX4P7ctBsjGwHgzSfV0VddZtW7JGhGCsRVSJYJSBqoq4U9VdPM759+hv4Ln0bXK5yN7Oxif23vkB5JdUb3zLwLRqbnhQjS009DvnSk9n2fl7VM/Hj0ZaqEm80qsjo3vf03v2bduLLSm/eZO3siO5Zpd44eQ1+mBO2Di1WWbPW9WLvTZd322b6fNLS7HrvqtnA/YzBqX/dOdXvYrxIk3XvOtaGG0vmQ58yHKTw+p7bgs+JisMla/oiJ4xOXFOTRTI9mSRKx3QmdbTvtE7Gafe96iyZNMBZTiqSEwSKd7dLsiVfHqmkTVFyCRHuZumjEBOsWvRtJngtPXwc2WhaL5Y2mT8SDiOzYjWmXfDHRVPZEdu6oM41ZHm5dYZosGepjr09LRGtRAIY5aUGk9KhD25dm54wenmiIxfCdCZ/QXyKCizEYXRu0xYkkOsZcGfvB7mX5/rFjo9XeMTQp0cFgWIjrSdw37EL99089BfddrTAxBxKbCyPwUFae3+e+/JdPT1hRVVWVAgAqgcvJV4j9KdjRi4ogP31v9sSSl7MnFBdDyvyx5DnwSJXSTPsUK76TmzWvZX0SAGhX2v4ufyFvTGw7j6ZqFMPcrZixnUrH+md9BWUBPi62g4epWaHINl63c5k660QFeegHY9QjAgmgbR1/IlbDk4FHfQV2mIIMANWvZX1jzTP5kwFg3zvabdTJqaVULercpBaFa/mh0HZeuXKRdzgAlJTARRl1erJ4xJT1i3OvKXkuOydjlJEH1ltwClJSAhfthULFkBpXa1+h/emJatMa9TsAQJVwHxHOUu2n1MgpsUNJJOs41b/lvcq5Ts1r2iej1UoPdXCK71ASXZv5H+tX8itKXlDH/PbuvNFrXswZX7/Sd8WBEu3OyiW+O19+OO/s4mJItAsexoC9b2u/oiCnQyX8VgCofApuJ0bnwXsKvUSQHvrBGDVcpRzs38ofd/Lt26b9qrecV+1fmRZ+Znuo7I+88w3f7APv+l7pqVTv22h3EKcDiBigU9B1mXnTiSABYN0blTLqVKhzA19qH3cR0ucWFUHuLec7abdiUYNCzavUBxyNHbA9KJtf8p/RsUl9Rd+phKiNEzVzildzaitTja7NakNXOf/7/tXaV+pe8+cP8LzIfRV8G3VwM7zF832nwwGAo8Gdv43v+s4OVfHGvip1VW8F/9Xe5d5bDpfycr1G6dj/rnrzc8XgRGDFGcFt5S/kZXVtVp+J1PJgVxV/ZOOLOeMH1F1wKrozAWDzQt/Zeq2Siu1Q+jY9nzeaCMw2OSQAqF6mnadXc4v2KRSs4DV33TXTnak1K59KCyoArHtBG1m/wntV81rt9ua13s/vX+u77K1njgpbptAvuqfQ27uFL6W9CtEeTnve1q4dqqyOiVL5km9YaDt/pG8rb4huU8LhKt4YrlY3NK3Sfvxc8Xie2akdNykANK7xfim1h5NexxOtZer9LxTnZQnhP1UF3zZjDpeq36VeTs2r1B9kHnf+tq/nv6BGxdJrFKv2Ld8VmcLr/J09G67yQPbEAcLqqV6qfS3weIHvSKix05kCysTQNr6N9itE9YrVs4nXPfro6UpxMaSVT6TNEjrWAcEGCmlxMaTi4mNDT4qKIAceyjp90YOF3iMj3F4oAFDyuDYisp03UDun8Da+p3qZ7fcXdv+pqfGD5UppqIr3FN8+ntuLWizz995y/i51cWovU192bOTMv3uX+6Y0rFKf27HMP5lK4KJKuMsDysTWdeqOtvVHhcuJr68M5I6L7uANdEChZI2iJ2q5sX8lvwwA9rytfqtyiXrxUAJJBJlKwDMX3pyFONuMk8peyp60+211ftNq7WvOORUv+z/dXOor2vSi77JYtdJDjQqFq3i49k3/Gc4IJyTiFLH1AeC54vE8XMn15tX8p8doe/v3l36fnRutUnoTdTy5652s0x3hcjT9oTXKlcFyHmlelZ7sEsFVXAxX/1Ze271JvX/ANSUALLhZKaVmhRI7lBg1cGpZo34j3YG089rW8232yMAytfjjxQUjyl7Kzh3ojyaCK3MkcEaJtpXwtq3jfwpW8vL6d9QLAbBgOX8zuZun4tuViL5D0ekgp+a16m8yyyj4L8eZlO5+V53VU86DlYHc7MyJr/P7ztf4JdTCqXuDssgxbRxBO/COeqGxn1PbevU+W3g4ALSVKAv0Hdxc9GDaI1NcfLSjNK7SrqH9nBLVik6NCnWW8T86Ha1rk/JK/1a+OkMQGRFYSTFcz99fOLXytez/OVTm+2NnpfbrtDAXS4O5KjNdlu0b+T2JPdzo3cZ/DgBdm5Xn6RCnZI2SpEZOB9fynwjBP8VcmQBwaK16d+s6bXGm6ZIpCAfXqt+kJk7blmjTndgZIkjLn/UVxGqV9ugOpRmAbB9nbz2RnRvfqSR6y5VXMkcO53qHSrQ/UYNimXsUM1jBa4uLZ7uIwO66a6a7f4sSjlQpAWdUyRRq5//7SrJO76zgj4eruRnbyQ90bVLv27bMN2XgxDnTOxQsV+ZSM6foDuVFAGhdz38Yq+FGpIrHN7+sTHA8QUIqTqGJbcO7vuK6Fb6bicCOERr7966NyvPBTbwu05YGgI71/Fnq49T0rvrtTG3fUqLdQT2cmtf4vkEEtuTRvDHPPJA/yukAh9aqz9IBxbLqFapf4f2ik98bT+WOM3dx6tqkbnRMsOWP+gqGKv/+t9VZke3KIerlFK3msfaN6vNlC3PHOWUvSbtaPeteyPpky3rtz6Gt3KBuldo38CUAUPl331nbXvPNHjhCnAqc2kPbnHQAV0yXusMRc6O9nG9l/E4AYJF8dtyyniUCQy1c7Bwka1/3Ts0rMG+LNyKyv1VdCsQBP0wiSL3ldC2SoKhuHWIMVBFIXTXBhXrG0AoAlsXK4GZfjfVSX3cX1pD9nDl3G0oiBdIUa+o7f8nKq9mjJ8ZPkK9oLvVf4/WZRiQmv/23Nz3rfvpgTxgATv9UvLLkOe2C8y3rpaxhdKWWQ7dn+ePXNa9R72Rz428cMekeQuXEsaxtW738p/b1bmn8KOov/o6WpcdTdPmt4XVUDOlUe3zxlB7a7MhFVlql7Lj4i9HOo3NDu3HScfmMCImUTksZA0FP/56fZ97lKoArFmeVV32l9zARJMyEyRgsidFkJGElE+nBw6dZk7K95jRnNXV7k7ok0kFdxMAeeTM3zOw8O8LujpRBnVoByz5jnHndjx/qiF55R/+Sw53u+aaB6Khhxpvf/XK0oatce6Rsce5UAJh7R6w9e2bi420H5T8mIogqLsovHE5L9yxXv1m60H/Jphd9lxUMw6RDreSaMoncF89I5U8+PXn992+NbcrNMydRAHI6XFQgOOowwaqF/vx9K/zPOJNMIkjFRVM8fRV8j9WuUEup9hgD0GibOYdW8y+n6pQItXLav5J/AQAOl/AvdpTxcgBw/OmNq7Vro9s47VmpTMw0q3o383eoXbF6NyubgfRWI06Bdr2WdWGsmrdSC6fodq73l/MnOzeqL/ZXKk3hSqWb9nCivQpRAydq40SHONFBnv5ex4n2cKJ6TtTPqW2dsmDgfEBofAHI1vuTRxs8qmMdAKp9FW7GYF3/mYOTPAqdRnFYIKuZAEycC71lDZ83ciy94FLh7W7EY3sOKCuJwA61aG+rHDPa1ihfZWciQY3gE6+KregNSndZSfljALAvnhbASEwKIAKWncsubirRrmNzYVAJXHuXQznn5tCWyirX9Gg3Egonhcl0rUuGOxJjT8fi7Icd3ezGUB/dUFsj3XF4D/tmWyP7fXcLeyUSpO3JFBmpJCWhEHpq2UMjZyeKqQQu8ZiiYFB2L8v3Vy7RRjrafudb2bn6TmWzUaukqJXTgZXaz52JYnS7EqaDCrWv478aOEHuKFMfMps4Nb6lXQMcjfh89GjYACMCC9yfmx0s5210ULH6ttha3/bu7F6hTGhc5X2mfbP2eMtG7byTrUP5K9p0Y49CdIBT2zr1oQxNL4LUBCcYAQKQZ8+Gq2ezso4aFKL9CvVWqBvq31ImAUDbOvUFCnLqKuN/tQXZdSRKshjS0ueyc2I7lZbUAcU4XHLEC+QazMt0qET7GTUqlKpVaM/b3isBYNkT+ZMr/57187rX/RdnzFHg7LpWknalykSQS5yd2GyzqmsTfzXRwBMtJcodTl1ICL3gZN2erev5r6lRIdqrULCCv140ZYon7Yb0DYtXK+HIdqX9qftzs4nSoQmZnQYA9i/3fjy5O/2MbsdG/udMTZ/5/+eKs3P6K3gLtSpWyzrtUQBY+LthZwJFR8IkThRY5vxe/456Yet6dW3NEm26k1bcUcEJcfzbNe/wsbFtSpQaFOqt4JW3Z8T07F/pvZLaODW9y380mCYHji6WHVytfovqjwj/61OmTPEcExtkn9dS4v1f6uHUX6G+AgCbAll5f/9jwWWUDko74dzMud6AEGQh9IL3p+3bytTf0iGFott5ZEvAPxkAaHnalDi4Vv2mvoub6wO+gqFWQInAnPM7ytRXaJ9C1MSpo0x9MXNUcGJ0at/yXkVt3OrcoC4CgJ2vZxftWJb1LSKwkn8gtECEHguvzvtjDszi4mKJe+jT8DB097AnLpwXrqcSuKCmPSKGyfJiYey/Yl6kCwAyN3QNpAVZZgzErkMCAKob41/To+g2wmQOH0u3NK/y3cXmwSSC/Gradie/Dx1IgsV1bAKA3KzU6flZqYsYA83xn7x9bmt+JnZbEIL/vswcxkAzR/1xDPfgLL2N9N0H+WP2hq1WqX0e91BXysCeIxu54khoA5s3DyZjMB+8p9Bbu8I7texl/7XD/NlnBfulVTKHbEbJzM9L/a5ioT8fgDUpmL4nzKJx4U5EesOeVwDANNGZX0A3lTycncNmIUWVRx9NzIAN9NTYq9HiAXPB+zcP6t/RplMjp97N/J3M487fpjXeK3cs017I8OYcDShb5Z3TV8n/EtnGG/UdCtG+9EJSbLtipmoU0quVBDVw86Dt6Tm4CSoFIDeu0h5pWqP96Eh8/cLcccndnPRaz4pnHsj3H+PZIbGHvuBDEPzEDvc0auFWSym/95idzWztWr3EO3znMt+vMwWw9i3/RX2VfBU1caLe9PO3ejWnSKUSilQqPdEqJRTayi2rjhP1KNRbwddk5v3WU3kXDSxP82r+Cwpyilbz/Z0b+Rff+UtWXubvs2fPdg2M1xcMjoi/PglqGxXzPNVgyST2MQYqKTliVxABjH022rn2OX8VY7CKp0zx9Fc2/L+s4anvwARCXaiOtbA1MV0uj0Zpb3sX7+6jlO6TLFlzeYaNyNfH50XYnHgU5xYXz3ZdedbOkQU5qatdUvKsllLty26F6g53u1aff3143/ir9N81r+J6QSF+V3AGFl+hJRHayhtTBjukcMuTSG0Zebhdvh3AOrGLmuCf0fjpJ7Qezs7p38L1YIXy8UwPjGNtOCNA/ZtZF4Z2KM3RGm4GK/jje5arFwB0kiZIkUwEVrlEG7lvjf/S5lJfUfsG7++CW/gOfRen3m18abX9PO+SR/PGtJZpd/VUqH+NVvG3qY0THeDUvCr9FJfw4Ag+MHOnezOvOlym3jRA8I8sPnWsV78R3sE72yu0xxY/kD/qGBv86KqqlLHnTXoXh0D6AZbjlWHfu955ej03Q9XKoUy/PAAcXu99Nr6Hl1cu9l/keJHEXRP884J/9Cms3zesUr8LHF2McjrBwTXq/3Zu4G8cWOU/MzOd83ztSWaVuXp7pEMQ2aPJ6+rN1MNp/7vq9wBg06Ks03u2qW9SvUqLfz68EDh2ixOBsPH/KeaXHnlY5WWXi47seUPFkFqvB2/u076YNNjucR+P3gvomXtUvt/96ckeIY5xPzrP6tYm3KVGW0LXOJvXtUm92O9PfEYpZLxph/S1L/2+syO92SxS4o4JPkgYAJQszL7qqaNb+7HXn86eWBHQRjgm0Yfx+J7jGj20Rr2Z2jmFK3mie7NSGt3BOxve0W4bZM4hEHzwHWAw4f4w7WoiSJVPwd1Syh8O1qq/W/Fc9gQAeKp45DAxkRX82z0/HyYDO9uRBTSh6QWnykTb6QRipVYgEAgEAoFAIBAIPiRKSkpcROQiogFeCHrP8UAgIGccP+ZTXFxsT+DoyDkDricTkaukpGTQ44FAQB5wnA2Vx0CKi4ulwcr7nolmRtmcshARO1Hd7M8x5w2sx/HyGew6g8BOkL98vHuT8Zt0ojxPpnyDtf/AcpxEvv8Zbtvj3JR/dTmkf+S348HYf79DZSih/GfabSg5yZSVf5WAfxAhCwzpJXZWX1//Hc55QX9//6uMsZ0A8OCDD3o//elPf0/TNBXAyvHjx28AgC1bttxQWFh4AQDTNE0CAEmSLABST0/P0pkzZ+7cvXv3LZqmnaXret8vf/nLRwKBgMUYo/r6+ps1TTsvEom0nH322U8REWOM0Z7a2q95s7LG9/T01M2YMeMVInIxxoySkpJh55133uc8Hs8MAFIwGNwfiUReYowddtLaDU5bt249s7Cw8MuwLERisVemTJlSl5Z1ZhERkySJiAgN+/bNyx027LKcnBylt7dX13W9oq2tbdWsWbO6t2zZcnNhQcG5JpElM+ayAAbLImLMlGWZMcZeHDdu3P7Kysp5hYWF0/RoNPjiyy//ccGCBYbTnk65qqurv5abmzvBsiyLiCzAfmxOktDc3Pz07Nmz25xznbTPPfdczkUXXfRdVVUdIZIBwLIsU5IkWJbVcdpppz1JRAqAzwNQAVQyxqocwWOMmZs3bz574sSJN+fl5Y1PJpNWNBqtqa+qDzDGugKBgDxv3jxzT23tl1Wfb7JlWSYROfeRYFlsR03NohtvvLFxyaJFw8+95JJvezweBsBkRBYkKZpMJrczxtZmKkrGmLVnz55z8/PzP5uXlzciHo9TJBLZG4/Hl0+YMGEvALLr+m/H6a1SLBbrICKKRqNNq1atyici9sxjj42KRCJERGQYRrGTqKWl5UUagq6urm8AQHd394POsT179pwLAI8++qgSDocPExHpuk4rVqwYaZtZw3Rd14mI2tvbf+3k09DQcEU8Hm8ZmEcikeg8ePDgLbbGkRwNFwwGFzrn9PX1LcvUfkQkFRUVydFodNFg5e7u7r4fAJqamtbT8bnJPu9dIqJYLBYsLi7mmQLgCGB3d3f1UBdpbGy8JPNcx3x78+9/P+ME+XfZ6fKIKGEfu98+5gGAhv37v6frenxgwmQyefDQoUOfcvIM9/evGyqT8vLyTwHA4sWLZw11TigUeuell17Kddq4sbHxi8lEMjnwvEgk0hgIBDx2+7CPgsbPJAggT9O08RdccMELjLHrFi9ebDLGugDkyrIczRjSQgCMRCIRj0ajq9wudxIMlgRIsVCsBgB62tpezMnJ+Y4sy678/Pyriahm//79M1VVHQEgpigKnzZt2mwAf5s0adKViqJ4TNOMdXR0/A0Atm/fPnrUqFHLFEXJtSzLiMViq5PJZDgrK+tKj8dT4Ha5ptjaXmaMGRs3bhyuadpn7BGMNE27uqqqajxjrLmystLNGEsdbGy8RtO0WwGYvb29K4LB4J7hw4ePcrvdn4hEIm8CQG9v72q3220SEQ0bNuxCRVGUUCjU1d/fv8ftdktut7vV1oxBAIYkSd15eXlDabFeAEY8Hu9JpVIljLG0RgWg63qb05wAMH/+fFqwYAHCyWSoqalptdvtdmmqOjw3L+9My7LQ0dGxgywrDMYaAaC/v5+ys7O7AQwHELXLlNy9e/fVE0877REASCaT0Wg0ugoAfD7f1W63e6wkSaMYY/ZDLuk6GIbRGY/F1iNtBpIECfF4vBkA3G53Utf1FOecAdhhGMb+RCIxzev1TvH7/VfPnTu3mDH2/ZUrV3qHDx9+v9vjdqdSqV1tbW0rVFXlXq/32oSur5w3b17S7iDmR03j77M7qG735p8AYJFIJGQf/0mGxv+zrSU7h7L9Zs+e7YpGo7X2tdYCQFdX128d5UNEVk9Pz4sAEOrre86yLIpGo5VFRemNl7q6un5jjzRmT0/Pnc61Gxsbzztw4MA9mRMvADh8+PD3iYjC4XCrM6q0t7cX2+dxAGg8cODnRJRKJZPGtm3brnOuWVRUpA4ySZX6+vqaiYiam5tfGNhmzc3NAVvjNz766KPKYBq/q6urlIiopaWl4h+5OQcOHLiFiMg0TfrLk09eOKCNc4iow25PZzRm/f39a4jISiaTfbuqqy93zm9qarps7969X7LTugEgHA6/bqdfM1QZAoHAtGg0atrnfQcAfvCDH6jhcHgbERn9fX21ALBl3Zaxuq7HTNM0+vr6nhngOPF9UNr+w9D4DgoAaJr2+8rKyg4iCgLwD9ZhsrOzs0zT3CZJUtI2X3cD+AoA17p161LJZHKVpmlTFEWZuXDhwnxN0+YCQF9fX09OTs4Ir6pe8sADD/g9nF/OGEMikVj16quvmramuRwAJZPJvfn5+c/YwiQxxrYD2J5h35tFRUVydnb2HQAQDYefsgDT5/Pd5/f7b12+fPn9AJIAwGR5PQCXy+3G9OnTX4/FYrXJZLIi0hdZOGbCmE2ZN+db3/qWxuyZsNvtdjwTLgAmY+xktZYEAIWFhWcT0RZb28kA3gFQbNfHHERxeAAYPT09R173OWnSJG6XQWaMpQa7H2VlZTmKokwBwEKh0DvnzJixwb6WyRjbCGCj8z2zfABm2uWzbCVYpmnajxhjlPmQgDOfe/jhh+P33XefDoDZowS279nefvb5ZzcrinJWdnb213RdvyaZTFbFYrE3P//5zz+/bt06Z+7zTwvoBz2Dtuyhfo2u6y2yLLOzzzrrCbfLlTtgdDja81wutyRJ5wG4CMAFqVTqiszhOxaLvQ0AHo8n65JLLvm2oihTLMsym5qa5pummXQrytgbbrjh64qijLM7xIqMRvYDYKZhBDPqazmutvnz5zPHtvztb387V9O0c03TTNXu3v1KTU3NS4ZhJDVNO+2cc865zp7cuidMmLCxq6vrnkQi0S1JkktV1enZ2dl3jR4/emNPV9c9jDEqLS2VGGNWRUVF5jOvZJsHgz4HyzmXA4GAXFpaKme6Y52b7HK5/AAuAHCx3U7nDdWmzr1gjFmOoNlmCzHGrNLS0iEnh2eccYZHlmUXAMTj8W57NJTtCfdfTdNsbW1t/UVGZ3Pyz7bLdxGAC5LJ5IWZk1BHWg3D+FI4HH4iHA5v1DTtEgBSKpVaDwB33XWX2dTUdFssFtsOAIqijPb7/TcUFhb+5fVlyzaUlJT4PiiPoevDEHxJkra0t7f/dsKECSWa18sx+L4uBAChUCi0Yd26L+Xk5/dLkiRRItF/6Zw5REQmAGzdurX8mmuu6VQUZfjo0aPvkWXZr+v6vr/+9a/PP/B///d9lfOzRo8efS8Aj67rhysrK7cSkcQYs9xudwOA82WXa8qiRYuGM8Ycs8q6/fbb+cKFC/X58+fLjDHq7+u7mzFGjDHjsksvfYVszwYAysnJ+TqApXanYYyxP8yePfuPL7744if9fv8Vqqp+wePxjNN8vl8EAoFn5syZEzqpxrKO9AG6++67Y8doJElyNLcFAJ2dnfX19fVf83FOpmGwUDze/vGPf/xIO/3TN84uy0svvRS6++67Qy6XK29Yfv5MxpgBpB+qIaIcSZJGElH+wHtuGEb11q1bv80YYy6Xi7q7u7udE1LJJGRZZrYwX6IoyiVOvSORSFlNTc0CZ6ScNm3aVgDnNzY2zvD7/VcoivJZn893cXZOzkVjxoy5iTH2gt0ZjY+S4BMAkiRp+MSJE0t7enoezsvL+wGAOABumubAhibLskzN79936aWXOlpZrqury2eM9diTznBfX996RVE+q2max7IsisfjpY899lhiwYIFZYrHM9nv93PLsigWi5XMmzcvbrvpEv39/QG/3z9PVVX/jTfe+MreurpfxFOp4NixY+92u91X3nfffZ9jjB0oKSmZwFX1UwCYJEmqwvmMzEqpqjq3pqbmbMbY7mXLlvk7OzsfjcViL82dO3fN/v37l3d2do4sKCj4EhG5EA57BrjbKOMzaJsxxjylpaUfkyQpyRhjqVSKsrKyambNmhXLOEf/2Mc+tifjmp4NGzb4GWPhDJfycdzldKJ7ZgHAPffcE7/jjjuWeb3eH3JVvSAYDD7Z2dn5x2g0ykzTLJBlOZU5uSQ7vcvlil9yySV77FHVBOAmoizGWAgATMOw4PGw3t7e0v5gsG7chAnfYIyx/v7+N+bOndtORB7GWLKlpeUej8dD5eXli2644YY/VldX10+dOvUtl8sFj8fj/SitdRyZ3CYSiXoiov7+/r849nQkElmT4ZX6mZOotbX1afuYmfG7QUS0b9++hzMnlAcPHrwjY0JLTU1Nn7YnhzdmHm9rayvKWI2U7DWB145xxyUSR/Lr6OhYbHs3FhARpVKp6I4dO27ctH79ZZs2bbqsuqr6+lQqFSYiCgaDjwFAe3v7nU76WCwWikQifc73np6e1zLdnzNnztTC4XCLPUl+JaNssl2vJXZSK7OMlmXRG2+8cb7tztw0yDkGEVFlRcX/OCvmg0h6el/+jg6n7WjlW29dkXm+PbnttX/+jZOuoqIiP5lM1mS4MK1UKnUk/0OHDv3JyScaDi8fqnxEdAsALFmy5Hw9fsQz+i0A6A8GF9uT7nhTa+sUxhhWrlw5XNd1y3Y3J0KhUNAwjJTtuo4d2HVgHBGxoVbd/20aPxwK6R5FScXjcT07O9siImnLli23nHnmmRtkWR6XOaGKRCLJcDicsocsZ/5jAKBYLGYCQG1trWV3klVZPl+f7HZ7jVTq0JYtW8oAoKqqakNWVlabS5aHGabZuW/fvlLHvLdvIubNm/eFJ5988jc+n+82RVFGuj0eKZFIdMdisVfr6up+HQgE1HgsVsQYS+q6vnz69OmvZ9aptbV1uc/n+0wymbxx+fLl9+q6vjsUCr2jqupFqqrmZrj8VlRUVHzTHrLJntBSOBzWiSgVjUQSA9srFo0mnDaQ0itjYIwhmUwilUqZABCNRnWPx+NoWZdtLxtERIlk8oRmTjQaNcPhcMru2MYg2r7dbveQ3ebSRRdd1LNz586rxo8f/7DH7f4UV9UsAEgkEh3RcHhFT0/P/7NHYzMSiSRMohQRmYwxV+Z9tCyLACCVSpmhUEjnqZRMRCoRubZs2fLDs84662LG2DiXZT346yt+faPf7zei0egTpmler6rqOI/H4zEMg6LR6K6+vr7vn3bOaQeJSFqwYIH1URB8Zwy1Fr3wwjUej8cjSVLI9itjwYIF7bfffvusj11wQXbUNB1zBkuWLPmV3+9/MB6PH7mQ2+0mVyrFuiKRfgA455xzkgBw8cUXtzzwwANT8/Pz3dGOjtj37r23HwBuvvnmnkf+93/Pc2Vn866ursSCBQu6bMHIHNeTr7766s+WLl16//nTpp0Gt5vV1tY2X3fddV32oo8rFApdq+s66urqegKBgFxQUMBsVyL98pe/vPP888//iWVZUk9PT/K6667bCODakpKSEWPGjBnl9XqlnTt3dlxzzTWHBrZJeXm5vmTJkisYY+5QKBRxhNY56bWlS7+TlZX188w2cNi3b1+r7Qr8gqqq6sB2SqVSLBJJb1I7d+5cY5CwCgMAFi5c+FpBQcE6xOPoikTaBpwfAnChPWonnTa35zEdAL60fPnyMTNmzBiZSCSMTZs2Nd1yyy3BzAnmspde+p8U597BygegGwDWrl1b197ePtnlcjHTNIPf+973DADtP/vZz2bm5+dnjcrLk+uG19GCSxf0Avh2cXHxz66/+uqJZ0+f7mloaIhNmzZtLwDTLtd/xiZZH1LMDnsfx9lgcSd2cBX7B+ojHSeg678miMdZ0f6g2u1k5MLOU/6w44M+UFPHsamrqqrYzJkzj5nMERGrqqpiM8Nhwpw5znFWVVU1aAMOTJ95/iC/DXV8MJuX1dbWsqlTp1r2uRIRoaqqSjpRvvbv1mDX03XdeT8uG2QSebzyHa8NrBOdEw6Hac7R9hyU0tJS5vf731P+QZTFoNeprKx0c87Z1KlTMyfpUkY9T6p8ThtnHnPk4nhtO3XqVLLdr2R3CuujEqsjEPzH8YEMWfbq55cBjHdW7kTTCj6ENSIJwKuMsb0ZEan/HsHP6ACjgPRLjodGt/PjdpBVv8S5Qs7346bUdcZ5wk5/cmmOpu2XGEsyRfFbJ5dXZrl0Bj3BdCjE+fHSps9LV+/EZdR1nXEkGHi2dUy+UAicfzBDua4zvI8203WdAQnGM8r0/toq/R0nbCunrjb8fd3PdsZYTOgBgeAj4AUY9GM/zsc2BcbkrVo4Kt85vnnx8MINz0z2Z54z2Ccd5sGw7c1hZ1QszZ7hvPHmeGmIiFGgSAYYNv1lTN721XkXFt8+mwMMdIJ0R8uVTr/r9YLTlz96unK8NJsCY9QDq3LHtW3OnhAsz57YUVEw4njnlzw3nm9ZmjvWKQ/AsCmQN/qNp2Zqx63TSXyK7esBDOWBEVO2vVkw3fl+vLpXPjXTvfr5vNGBQJF8snmte2HYyOpF53qJiJWUzHatfj5vdOVTM90nSrd58fDC5rLsSftLh52x9OHxOQDDyeT3n9Up7N2Fw1s9f9r/rvqs81Li9jJ1w6G12l3AsTsQ46ibgRUXQwoE4OndogbC23hPfyXvDG9XNh552/gQ+1U6u401r/X+MFTNg8Eq3h6u5ocb3tWuJgIbbNs/Z2eytvVqWet69ZsA0LOJP9K6Tl2bFvxB32YoA0B8m3JVdCePHS7l7V1b1d6WdXxpZjky60QEtnJRobdjg9qwbwWfxxjQtIZf2r5e3bfqqdxsIrB/9AXMzhbkzzww2d+9RX2rv1Lt66tUe7vLtQ2rFvrzM9+r6+BsUrV3TdZp7WXqwU2B9JtWjrdplfNb8xq1ruo139cBoHKJNrK9TDm4e6kyIfO6g6Xr2qhsClcrh3vL+Z7+at7Wsk67PfMefNj8SyehigecETPYXBhsLgxZgsTdNPTW1iWQFyyA9bER/AHFQzO7WnF+c70y2bSYPnGU9SJjIMx/b7JAADJjsHa94bt8WI75UDQk3Vq92X96f1j6VYqkOGOgotqhXZ8eN/lA6Dhcqt4ky/hKJCp//rrv7U8cz13KOWWF+9Ayek58ZMEFPxl22W2FXwSAgW8lYQCVlkK++raOqGXiD8Ny6f+IAC/HHwj0l0/cHewvLYXM/tEXtpWm37B43SUH/8AVOuPgIT6tvoZNievSm7mqy2AMQ4ozl8A8LlJl18lrVrcLqiyln9piMjGPCyqTTtxpJZkNa2+TvpF3sX5WqA+Pcbf1AACg6F/zFpd/6TbhxFh/3nC6vmGl+ldJAjQ/nR4KStEhG+fKdASeptBNnZ3SDyd9Ot4M6NjwfNZdZ52Z3Ll5sbeQsWiHvdJ/RFCKCtINP7rQ+EI0Lr0x8orYW4zFQIS/HhHABcdt4F5Zxue4x/pU02HXZdNvinRRujMNHSJA0L0+FNQv9z7Bs5mrr5Mtmn4TygZ7Jc/cuTDSx+N/6tnM72zbor3GUpb7z49NeoSoTjpuPidwVrC56Tbzcrq2q1O6c9pNQWdF+YHMzjdY4kQiAa8CMxZPR0rOn3/C4DcQHS2rJINlfj++j4bi48fTreFK5QLJjZt7g+wFAChNvzXS+K/S+JYF5pJh+byU9GmUlKQTaDVy7ibgktiRNfF4Qk4BIBOWfHwpgIeB4gBgbT35lyYwBis3x/qC24NEQZ55ta2JTiIhMY8bzO2CZBjkOQmPGvWHpZ+OGEs3hePsvgWv1iVx4kjLk60DTIslM82xk0onAROmyAYA+s1vTqx9GQMjK31vzJCcAAMLpU6s8WUJVjgi5XUH5QKLodklY9pzxeP5nPT7CNh/leAzIn9nG1s7/HL968Mu078e6WP7JBdpQ3YU2+6PJ9marBzr/so3RmoA2Hkz9P+TJaq7/EvxVlujHisoXenvXX3SEq5gXtNq7Xw2C6m6t7VP73xLmzmU/ZlBbrAP9zW0umcPz8OD9SvVixiDedwtuRl4uJ+1TPxE7OujLop+bWZRdM1gps4AvzTK63zVwUZqnzAiXm7f8H9mqCdHyBMpVlaQbz7wVPFI7em7Ie1f5b+9JFDgO74bWwERYy8tkr3AeE40nh/PpAIAt5v2jR9jXgUAw0cZnwCY2t6T184YMH/+0B3YJKY2NUu/m/iJ2Ndrtmn/k5tFV194QUchWwCruPi/TPDBQC43+ZzJrSTR8f3+c2AWF0PaWav+kEnoPXts7/7+SqXZ46GZB1rctxGBDWbj228Jl874ZGxlKMr+MKzAKg1W8n1jRlqL/R4aTwQ2f+rQjWtZICLp8DnXRep6Qvh5Ya61ZOdb2bmYP/SEL6EjPqyQJuvVyg6qV2rj1cqyk7M1UwqT4YIHrg9C08+fDyIC29Uof8cgiX3pxuCBL97NG/KyjR/LiKv25HZQoglmut3Iveuzscqeio6GtvWdrw85yZ0DiwhMj0s/VdzWFf3b+P68PDwV1dm9N9zdFrP+lp5rDKnxGcXPOMNc2FHGd5x7fnRLX5i9WhvTW6gY0oIF/2FvazyRKyq6Qx2z753csc73jk1Zp7dU+POHdl2xjGAmhgOrfR/bv9p/LTDT7eR3fDdYOm678u/5Z+1b57ux5LmCESeTrmNT1umt630F6fQMie3ajAOrcrOPm9euAh81aNOT1epFtFe9OLFNm34y7rlA8RRPqMp3NtGJXYAn5+47ts32rMy+ct+qrGuAI7vTMcYGr8euwBRPuNI7jZq1mdSqzqK9viknk89bT2Tn7tvgv2HHMv/kk3Iz221MreosalAv2l/iPeeIu/W/yZ0pEHzU+CBDFvxIP1BCQ183ZB/PoqPfs05+eA+3Sum9Gka9z6EwxMLhDsnvL7ROLr8B5Qq3SvCfRJ7h1qOmo99HJ1u3cLhV8vtHfTjD+/tts3+kDqEQC7P30752G4cj7H3k48hVeJAdIv71gp8RpPYjAGdBBKkJPiSnoC1XjzPGqp0NBUSzCAT/DlPnPxHxxkDQ8Twvgv9CPox30gr+czjl3mzuhDec4csZe6g08aziAUslIb3fXelOlMCyp2MSO+45zrbfmZ2QLIIFBkkCmJXhdCdKn8/Ye17/mb4cgTlxMuk4CXrPygABDARD8YMfPCgvP/+myO8GC6sQgv/fZtsxEAUgs3l9ze1lfF3BmfgNegkntajviIZ0EsedwAOyjw9mUPiR3jQkhqNrtm4AXqS34EoMSOt3/BoZPg7Lvot+pPdJiGHooAdm56cB8U4ENc26lQhs/nxh458yBAKQ582D2VGmvDB8NL6s9yPJ2HHFnxQVLkhAInpsIJbCIcMFJCIgIlhMBshkMmOAJBNMA2bmAGHb1SymszXcQ37JjQvJhCXJkI0kgqGItNqr0UWqRhNSSRgMaU0ejbJVJsHI8tHV9gosyTJkw0AoFJZWul003p9Ns6zU4C5lAkh2gSxi1u7d7Irz5sW3nIrafjDddcpQVASLCNLK8pyvh3pZHffBQ+k9WuX3fABJ4XCF+7El1MdWu91Hj0sy5HAYlX1d7C0CdFkG82iQu4J4JBhi3yU3QrILzLY+ZMYgE0H2eCATYzW6gV943JAlBokxpJrb5B+rPvJ09Uq/NlI4JMuQlWzIkSheTCSxxjCpsj/MnlSymSxLAEmIt3bKP4GEsCQTWHrskgerh8TA3Bpzt7exH503L76FSuA6FYX+lBZ8xkCvvgp22487ojtq3TfpcRaX02G1NEBLmm4/WCTK3u7ulf8U7GXLuoPSQx4f4FbBEkmUV+9yfz/lYt2mZWtZBljEohKjfsaG8JwwwMvN2y2TjYRp294Akxgs04KlKlRvpLDdrYKRAVgWG97ZJ3UFQ/Jh08BImAS3AlcyjpqwLtXKbgqBWJBJR0aUgXMb0+OH3H2YvTzhk/HHqRJuJ4RZCP6ppvXtuP3Txxpz3Qq5yQIx9h4TgZgHCIXZbosgZeXjMoswyjIAIwmSZZw2+WzryymdbZAYaiU3GHMBLommcLc1y52FbMMY9LoAWI/ikfrBALLSYdRjCs2H3B64esNSFhhGkgEwN2AYWDt2uHV5YZ51XTLF1oClJ7WyBI8EZmb5ccOeRvmBVAI9LhekgR0YADOTINVL51S85s/HTBinsmfrlK04BSCzuTD2vM0vyy+kJygFedAoRIJshEA52datqkpZloEtmmJdRmb6wQvDYGEjRR2RECQmQ2EAs6JAbjamHux0bwy3sRq3CtnxyGR6YiyLfMEQZlDaIidIgJ5gpfEIK83PMW9UNMxKJWBYScDvxzW9YXlXX1jekJ1F11sGkErAcHFMH5aTurWrC38+c7z5GbeCbMOANbCjMQbJ0GF5h9G000akXmAMNH8OpFN1nndKVpqKIbEFsAKPjii45mP9VV7NGpXS0y7EwRMALhdkwwARISRJ8B/RqAwSmehnEnweD1yJRHoi63JBThlIwQJJMmQayrUKJoGRCUo/BGKZSAGIcxW5yQTSb3Ww0hNoPYEYAJNz+BM6TMew8rggJZIIKgpykylYoKEfLwTBULKhHG5kxWOu1H+T9nB9NN4pJQT/wxT6tG5lrz+b7718SnRt/umYhV46sWPX8ZM4u79nbrwn225FGnBcyvj/+7kjEoDUgPHYcVsC6QfzBv7mHiTNUPUAAM7QUCffetrV0RdPReE/5fz4oPRTURWvJT3ZOdbvEy3QIUGSpROLp2n/Iw9wepr2W6kG+kKHOj7wmvJJ5HHkehjit+jgx99zngUGC5biJqYpcnpjpiKIYC+BQJg6//0mjwhSY0LbCwQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKBQCAQCAQCgUAgEAgEAoFAIBAIBAKB4KPD/wdhBEk9Ei2GewAAAABJRU5ErkJggg==" alt="NTHC" class="club-logo" style="height:70px;width:auto">
+    <div class="hero-text" style="text-align:left">
+      <h1>Newcastle <span>Tigers</span></h1>
+      <div class="sub">Hockey Club &middot; 2026 Fines Register</div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('list')">Fines List</button>
+  <button class="tab-btn" onclick="switchTab('tracker')">Tracker</button>
+  <button class="tab-btn" onclick="switchTab('flip')">Coin Flip</button>
+  <button class="tab-btn" onclick="switchTab('paid')">Paid</button>
+  <button class="tab-btn" id="audit-tab-btn" onclick="switchTab('audit')" style="display:none">Audit Log</button>
+</div>
+
+<div id="tab-list" class="tab-panel active"><div class="con" id="fines-list"></div></div>
+
+<div id="tab-tracker" class="tab-panel">
+  <div class="con">
+    <div class="stats">
+      <div class="stat"><div class="stat-v" id="s-total">$0</div><div class="stat-l">Total Fines</div></div>
+      <div class="stat"><div class="stat-v" id="s-count">0</div><div class="stat-l">Infractions</div></div>
+      <div class="stat"><div class="stat-v" id="s-players">0</div><div class="stat-l">Players Fined</div></div>
+    </div>
+    <div id="admin-form" style="display:none">
+      <div class="sec">Add a Fine</div>
+      <div class="form-grid r2">
+        <input type="text" id="f-player" placeholder="Player name..." list="pl" autocomplete="off">
+        <datalist id="pl"></datalist>
+        <select id="f-fine"></select>
+      </div>
+      <div class="form-grid r3" style="margin-top:.5rem">
+        <input type="number" id="f-amt" placeholder="$ amt">
+        <input type="text" id="f-comment" placeholder="Add a comment... (optional)">
+      </div>
+      <div class="form-act" style="margin-top:.5rem">
+        <select id="f-game" style="width:auto;min-width:90px;flex:0 0 auto"></select>
+        <button class="btn" onclick="addFine()" style="flex:0 0 auto">+ Add Fine</button>
+      </div>
+      <div class="sec">Add a Round</div>
+      <div class="add-round">
+        <input type="text" id="new-round" placeholder="e.g. Rd 6, Rd 7, Semi Final...">
+        <button class="btn btn-sm" onclick="addRound()">+ Add</button>
+      </div>
+    </div>
+    <div id="viewer-msg" style="display:none" class="viewer-msg">
+      👀 You're viewing as <strong>read-only</strong>. Only admins can add or remove fines. Use the password field above to unlock.
+    </div>
+    <div class="sec">Leaderboard</div>
+    <div class="tags" id="filters"></div>
+    <div id="leaderboard" class="lb"></div>
+    <div class="sec" style="margin-top:1.8rem">Fine Type Breakdown</div>
+    <div id="fine-tally" class="tally"></div>
+    <div class="sec" style="margin-top:1.8rem">Fine Log</div>
+    <div id="fine-log"></div>
+  </div>
+</div>
+
+<div id="tab-paid" class="tab-panel">
+  <div class="con">
+    <div class="paid-stats">
+      <div class="stat"><div class="stat-v" id="p-total-fined">$0</div><div class="stat-l">Total Fined</div></div>
+      <div class="stat"><div class="stat-v" id="p-total-paid" style="color:var(--grn)">$0</div><div class="stat-l">Total Paid</div></div>
+      <div class="stat"><div class="stat-v" id="p-total-owed">$0</div><div class="stat-l">Outstanding</div></div>
+    </div>
+    <div id="admin-pay-form" style="display:none">
+      <div class="sec">Record a Payment</div>
+      <div class="form-grid r2" style="margin-bottom:.5rem">
+        <input type="text" id="pay-player" placeholder="Player name..." list="pay-pl" autocomplete="off">
+        <datalist id="pay-pl"></datalist>
+        <input type="number" id="pay-amt" placeholder="Amount paid ($)">
+      </div>
+      <div class="form-act" style="margin-top:.3rem">
+        <input type="text" id="pay-note" placeholder="Note... (optional)" style="flex:1">
+        <button class="btn" onclick="recordPayment()" style="flex:0 0 auto">+ Record Payment</button>
+      </div>
+    </div>
+    <div class="sec">Outstanding Balances</div>
+    <div class="paid-hdr"><span style="text-align:left">Player</span><span>Fined</span><span>Paid</span><span>Owes</span></div>
+    <div id="paid-list"></div>
+  </div>
+</div>
+
+<div id="tab-flip" class="tab-panel">
+  <div class="con">
+    <div class="coin-wrap">
+      <h3>Double or Nothing</h3>
+      <p>Feeling lucky? Gamble any individual fine on a single coin flip.</p>
+      <p style="font-size:.8rem;color:var(--gb);font-weight:600;margin-top:-.5rem;margin-bottom:1.2rem">⚠️ Minimum 5 squad members must be present to witness the flip.</p>
+      <div><div class="coin" id="coin" onclick="flipCoin()">$</div></div>
+      <div class="c-res" id="c-res"></div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-audit" class="tab-panel">
+  <div class="con">
+    <div class="sec">Audit Log</div>
+    <p style="font-size:.82rem;color:var(--dim);margin-bottom:1rem">Every fine added or deleted is recorded here with a timestamp. This log cannot be edited or cleared.</p>
+    <div class="tags audit-filter" id="audit-filters"></div>
+    <div id="audit-log"></div>
+  </div>
+</div>
+
+<div class="footer">Newcastle Tigers Hockey Club &middot; Est 1986 &middot; <span>Go Tigers</span></div>
+<div class="toast" id="toast"></div>
+
+<!-- Firebase v10 compat -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<script>
+// ====================================================
+// FIREBASE CONFIG
+// Replace these values with your own Firebase project.
+// Create one free at https://console.firebase.google.com
+// ====================================================
+firebase.initializeApp({
+  apiKey: "AIzaSyDfYF7V0l2mTTXFQvCbgVvH6xUX2Otu9DY",
+  authDomain: "tigers-fines.firebaseapp.com",
+  projectId: "tigers-fines",
+  storageBucket: "tigers-fines.firebasestorage.app",
+  messagingSenderId: "1095275621181",
+  appId: "1:1095275621181:web:509060172dd91860a73354"
+});
+
+const db = firebase.firestore();
+const finesRef = db.collection("tigers_fines");
+const gamesRef = db.collection("tigers_config").doc("games");
+const auditRef = db.collection("tigers_audit");
+const paymentsRef = db.collection("tigers_payments");
+
+// ====================================================
+// STATE
+// ====================================================
+let isAdmin = false;
+let fineLog = [];
+let auditLog = [];
+let payments = [];
+let games = ["Rd 1","Rd 2","Rd 3","Rd 4","Rd 5"];
+let filter = "All";
+let auditFilter = "All";
+
+function formatTime(ts){
+  const d=new Date(ts);
+  return d.toLocaleDateString('en-AU',{day:'numeric',month:'short'})+', '+d.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit',hour12:true});
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+// ====================================================
+// FINES SCHEDULE
+// ====================================================
+const finesData = [
+  {section:"Teamo & Attendance",items:[
+    {name:"Late teamo / No response to teamo",amount:"$1–$2",value:2,note:"Not responding or late responding to weekly team message."},
+    {name:"First week teamo",amount:"$5",value:5,note:"First offence of the season."},
+    {name:"Miss Port / Missing trip",amount:"$5–$20",value:5,note:"Missing a team trip or Port weekend. Amount depends on circumstances."},
+    {name:"Overseas holiday during season",amount:"$2",value:2},
+    {name:"Not staying after training",amount:"$1",value:1,note:"Leaving without having a drink with the boys."},
+  ]},
+  {section:"Match Day",items:[
+    {name:"Goal",amount:"$1",value:1,note:"Per goal scored. Yes, you get fined for scoring."},
+    {name:"MOTM",amount:"$2",value:2,note:"Any grade — man of the match gets fined."},
+    {name:"Green card",amount:"$2",value:2},
+    {name:"Missed sitter",amount:"$2",value:2,note:"Must be unanimous agreement at court."},
+    {name:"Donkey moment",amount:"$5",value:5,note:"On-field brain explosion. Unanimous agreement."},
+    {name:"Not celebrating goal in A50",amount:"$2",value:2,note:"Per offence."},
+    {name:"Not wearing polo",amount:"$1",value:1},
+    {name:"Wrong shorts (HNSW, uni, other clubs)",amount:"$2",value:2},
+    {name:"Forgot stick",amount:"$10",value:10},
+    {name:"Umpiring",amount:"$1",value:1},
+  ]},
+  {section:"Off Field",items:[
+    {name:"Leaving shed open",amount:"$10",value:10},
+    {name:"Media",amount:"$1",value:1,note:"Hockey Australia or club media duties."},
+    {name:"Debut (Prem or 2nd grade)",amount:"$1",value:1},
+    {name:"Getting a GF",amount:"$5",value:5},
+    {name:"Off field injury",amount:"$2",value:2},
+    {name:"50 games milestone",amount:"$2",value:2},
+    {name:"Shit haircut",amount:"$2",value:2},
+    {name:"Ignoring JD in rotation",amount:"$1",value:1},
+  ]},
+  {section:"Miscellaneous",items:[
+    {name:"Any other infringement raised at court",amount:"TBD",value:5,note:"Final decision and amount lies with the finesmaster."},
+  ]}
+];
+
+// ====================================================
+// SEED DATA (Rd 1–Rd 5)
+// ====================================================
+const seed=[
+{p:"Toby",f:"First week teamo",a:5,g:"Rd 1"},{p:"Leo",f:"Not looking over 16",a:2,g:"Rd 1"},{p:"JB",f:"First to leave after training x2",a:4,g:"Rd 1"},{p:"Huddo",f:"No response to teamo",a:2,g:"Rd 1"},{p:"Griffo",f:"First week teamo",a:5,g:"Rd 1"},{p:"Tom Holmes",f:"Not stay for drink after training",a:1,g:"Rd 1"},{p:"Sean",f:"No response to teamo",a:2,g:"Rd 1"},{p:"Roh",f:"Kicked out of pub in front of Tigers players",a:5,g:"Rd 1"},{p:"Roh",f:"No response to teamo",a:2,g:"Rd 1"},{p:"Roh",f:"First week teamo",a:5,g:"Rd 1"},{p:"Tables",f:"Leaving shed open",a:10,g:"Rd 1"},{p:"Wade",f:"Overseas holiday",a:2,g:"Rd 1"},{p:"Cam",f:"No response to teamo",a:2,g:"Rd 1"},{p:"Quincey",f:"Hockey Australia Media",a:1,g:"Rd 1"},{p:"Tricky",f:"No response to teamo",a:2,g:"Rd 1"},{p:"Joey",f:"Shit haircut x2",a:4,g:"Rd 1"},{p:"Rian",f:"Leaving shed open",a:10,g:"Rd 1"},{p:"Dunill",f:"Not stay for drink after training",a:1,g:"Rd 1"},{p:"Dunill",f:"No response to teamo",a:2,g:"Rd 1"},{p:"Harbo",f:"No response to teamo",a:2,g:"Rd 1"},
+{p:"Cam",f:"Teamo",a:2,g:"Rd 2"},{p:"Chilly",f:"Making first question at trivia about himself",a:2,g:"Rd 2"},{p:"Conor",f:"Asking for a fine",a:2,g:"Rd 2"},{p:"Gus",f:"Teamo",a:2,g:"Rd 2"},{p:"Harbo",f:"Getting locked in the bathroom",a:2,g:"Rd 2"},{p:"JB",f:"Miss Port",a:5,g:"Rd 2"},{p:"Joey",f:"Induction to the fines committee",a:2,g:"Rd 2"},{p:"Joey",f:"Getting hurt at school",a:2,g:"Rd 2"},{p:"Leo",f:"Breaking fence at AirBnB",a:5,g:"Rd 2"},{p:"Mez",f:"Having no camping gear",a:2,g:"Rd 2"},{p:"Oscar",f:"Miss Port",a:5,g:"Rd 2"},{p:"Oscar",f:"Teamo",a:2,g:"Rd 2"},{p:"Roh",f:"Missing Port due to Bender",a:20,g:"Rd 2"},{p:"Roh",f:"Donkey Moment",a:5,g:"Rd 2"},{p:"Sean",f:"Miss Port",a:5,g:"Rd 2"},{p:"Seb",f:"Goal",a:1,g:"Rd 2"},{p:"Smidge",f:"MOTM",a:2,g:"Rd 2"},{p:"Tables",f:"Goal",a:1,g:"Rd 2"},{p:"Tane",f:"Miss Port",a:5,g:"Rd 2"},{p:"Toby",f:"Goal x3",a:3,g:"Rd 2"},{p:"Wade",f:"Getting a GF",a:5,g:"Rd 2"},{p:"Wallis",f:"Off field injury",a:2,g:"Rd 2"},
+{p:"Cam",f:"Late teamo",a:1,g:"Rd 3"},{p:"Cam",f:"Not staying after training",a:1,g:"Rd 3"},{p:"Chilly",f:"Goal",a:1,g:"Rd 3"},{p:"Decs",f:"Not staying after training",a:1,g:"Rd 3"},{p:"Gus",f:"Late teamo",a:1,g:"Rd 3"},{p:"Gus",f:"Not staying after training",a:1,g:"Rd 3"},{p:"Huddo",f:"No Polo",a:2,g:"Rd 3"},{p:"Huddo",f:"Late teamo",a:1,g:"Rd 3"},{p:"Joey",f:"Not staying after training",a:1,g:"Rd 3"},{p:"Kez",f:"Umpiring",a:1,g:"Rd 3"},{p:"Leo",f:"Goal x2",a:2,g:"Rd 3"},{p:"Leo",f:"Donkey moment",a:5,g:"Rd 3"},{p:"Mez",f:"Other clubs shorts x2",a:4,g:"Rd 3"},{p:"Mez",f:"Late teamo",a:1,g:"Rd 3"},{p:"Oscar",f:"Having a domestic at training",a:1,g:"Rd 3"},{p:"Pez",f:"HNSW shorts",a:2,g:"Rd 3"},{p:"Pez",f:"Goal",a:1,g:"Rd 3"},{p:"Rhys",f:"Media",a:1,g:"Rd 3"},{p:"Roh",f:"Late teamo",a:1,g:"Rd 3"},{p:"Sean",f:"Overseas holiday",a:2,g:"Rd 3"},{p:"Seb",f:"Late teamo",a:1,g:"Rd 3"},{p:"Smidge",f:"MOTM 2nd grade",a:2,g:"Rd 3"},{p:"Tables",f:"Umpiring",a:1,g:"Rd 3"},{p:"Toby",f:"Goal",a:1,g:"Rd 3"},{p:"Tom Holmes",f:"HNSW shorts",a:2,g:"Rd 3"},{p:"Tom Holmes",f:"Not staying after training",a:1,g:"Rd 3"},{p:"Wade",f:"Late teamo",a:1,g:"Rd 3"},{p:"Wade",f:"Play for GNS",a:1,g:"Rd 3"},
+{p:"Chucky",f:"Media",a:1,g:"Rd 4"},{p:"G Train",f:"Green card",a:2,g:"Rd 4"},{p:"Leo",f:"Smashing fines master's phone",a:5,g:"Rd 4"},{p:"Pez",f:"Goal",a:1,g:"Rd 4"},{p:"Pez",f:"Losing chariot race",a:2,g:"Rd 4"},{p:"Smidge",f:"Stealing UNSW Veo bag and case",a:2,g:"Rd 4"},{p:"Smidge",f:"Donkey moment",a:5,g:"Rd 4"},{p:"Stoney",f:"Goal",a:1,g:"Rd 4"},{p:"Tables",f:"Losing chariot race",a:2,g:"Rd 4"},{p:"Wade",f:"Playing for GNS against Tigers",a:1,g:"Rd 4"},
+{p:"Billy",f:"Donkey moment v Gosford",a:5,g:"Rd 5"},{p:"Boycey",f:"Ignoring JD in rotation",a:1,g:"Rd 5"},{p:"Boycey",f:"Not celebrating goal in A50",a:2,g:"Rd 5"},{p:"Browny",f:"Dragons lost to the Titans",a:1,g:"Rd 5"},{p:"Chilly",f:"Goal v Norths",a:1,g:"Rd 5"},{p:"Chucky",f:"Missed every game so far",a:2,g:"Rd 5"},{p:"Chucky",f:"Media",a:1,g:"Rd 5"},{p:"Ciaran",f:"Being a Pom",a:1,g:"Rd 5"},{p:"Ciaran",f:"Prem debut",a:1,g:"Rd 5"},{p:"Dargs",f:"2nd Grade MOTM v Souths",a:2,g:"Rd 5"},{p:"Dunill",f:"2nd grade debut",a:1,g:"Rd 5"},{p:"Eli",f:"Ignoring JD in rotation",a:1,g:"Rd 5"},{p:"Eli",f:"Not celebrating goal in A50",a:2,g:"Rd 5"},{p:"G Train",f:"Green Card",a:2,g:"Rd 5"},{p:"G Train",f:"Late Teamo",a:1,g:"Rd 5"},{p:"Griffo",f:"Ignoring JD in rotation",a:1,g:"Rd 5"},{p:"Griffo",f:"Late teamo",a:1,g:"Rd 5"},{p:"Huddo",f:"Goal v Norths",a:1,g:"Rd 5"},{p:"Huddo",f:"Not celebrating goal in A50",a:2,g:"Rd 5"},{p:"JB",f:"Green Card",a:2,g:"Rd 5"},{p:"JB",f:"Not celebrating goal in A50 x2",a:4,g:"Rd 5"},{p:"JD",f:"Attempting midfield tomma pass in first game back",a:2,g:"Rd 5"},{p:"JD",f:"Late Teamo",a:1,g:"Rd 5"},{p:"JD",f:"Missing pre season training sessions",a:2,g:"Rd 5"},{p:"Joey",f:"Not celebrating goal in A50",a:2,g:"Rd 5"},{p:"Kez",f:"Overseas trip during season",a:2,g:"Rd 5"},{p:"Kez",f:"Losing a grand final",a:2,g:"Rd 5"},{p:"Leo",f:"2nd Grade MOTM v Norths",a:2,g:"Rd 5"},{p:"Mez",f:"Wearing uni shorts",a:2,g:"Rd 5"},{p:"Oscar",f:"Not wearing polo",a:1,g:"Rd 5"},{p:"Owen",f:"2nd grade debut",a:1,g:"Rd 5"},{p:"Pez",f:"JD-like slap",a:1,g:"Rd 5"},{p:"Quincey",f:"Not celebrating goal in A50 x2",a:4,g:"Rd 5"},{p:"Rian",f:"Late teamo",a:1,g:"Rd 5"},{p:"Sean",f:"Late teamo x2",a:2,g:"Rd 5"},{p:"Seb",f:"4x Goal",a:4,g:"Rd 5"},{p:"Seb",f:"3rd Grade MOTM",a:2,g:"Rd 5"},{p:"Smidge",f:"50 games",a:2,g:"Rd 5"},{p:"Stoney",f:"MOTM v Maitland",a:2,g:"Rd 5"},{p:"Stoney",f:"Overhead mistrap",a:2,g:"Rd 5"},{p:"Stoney",f:"Being the Player to watch at Briars",a:2,g:"Rd 5"},{p:"Stoney",f:"Prem Debut",a:1,g:"Rd 5"},{p:"Tane",f:"10 Swans in AFL supercoach team",a:1,g:"Rd 5"},{p:"Toby",f:"Not wearing polo",a:1,g:"Rd 5"},{p:"Tom Holmes",f:"Media",a:1,g:"Rd 5"},{p:"Tom Holmes",f:"2 missed sitters",a:2,g:"Rd 5"},{p:"Tom Holmes",f:"Prem Debut",a:1,g:"Rd 5"},{p:"Tricky",f:"PHL MOTM v Gosford",a:2,g:"Rd 5"},{p:"Wade",f:"Forgot stick",a:10,g:"Rd 5"},{p:"Wallis",f:"Injured",a:1,g:"Rd 5"}
+];
+
+// ====================================================
+// AUTH
+// ====================================================
+function tryLogin(){
+  const pw=document.getElementById('pw-input').value;
+  if(pw==='tigers2026'){isAdmin=true;updateRoleUI();showToast('Admin unlocked')}
+  else{
+    document.getElementById('pw-err').textContent="Wrong password";
+    document.getElementById('pw-input').value='';
+    document.getElementById('pw-input').focus();
+    setTimeout(()=>{const e=document.getElementById('pw-err');if(e)e.textContent=''},2000);
+  }
+}
+function lockAdmin(){isAdmin=false;updateRoleUI();showToast('Locked')}
+function updateRoleUI(){
+  const area=document.getElementById('auth-area');
+  if(isAdmin){
+    area.innerHTML='<span style="color:var(--dim)">Logged in as:</span> <span class="role-badge admin">Admin</span> <button class="role-switch" onclick="lockAdmin()">Lock</button>';
+  }else{
+    area.innerHTML='<span class="pw-inline"><input type="password" id="pw-input" placeholder="Password..." autocomplete="off" onkeydown="if(event.key===\'Enter\')tryLogin()"> <button onclick="tryLogin()">Unlock Admin</button> <span class="pw-err-inline" id="pw-err"></span></span>';
+  }
+  document.getElementById('admin-form').style.display=isAdmin?'block':'none';
+  document.getElementById('viewer-msg').style.display=isAdmin?'none':'block';
+  document.getElementById('audit-tab-btn').style.display=isAdmin?'':'none';
+  const apf=document.getElementById('admin-pay-form');if(apf)apf.style.display=isAdmin?'block':'none';
+  if(!isAdmin&&document.getElementById('tab-audit').classList.contains('active')){switchTab('list')}
+  renderTracker();
+}
+
+// ====================================================
+// AUDIT HELPER
+// ====================================================
+async function logAudit(action, data){
+  await auditRef.add({
+    action, player:data.player, fine:data.fine||'',
+    amount:data.amount||0, game:data.game||'', comment:data.comment||'',
+    ts:Date.now()
+  });
+}
+
+// ====================================================
+// FIREBASE SEED (only runs if collection is empty)
+// ====================================================
+async function seedIfEmpty(){
+  const snap = await finesRef.limit(1).get();
+  if(snap.empty){
+    const batch = db.batch();
+    let baseTs = Date.now() - seed.length * 1000;
+    seed.forEach((s,i)=>{
+      const ref = finesRef.doc(String(baseTs+i));
+      batch.set(ref,{player:s.p,fine:s.f,amount:s.a,game:s.g,comment:s.c||'',ts:baseTs+i});
+    });
+    await batch.commit();
+    await auditRef.add({action:'seed',player:'System',fine:'Initial data loaded (Rd 1–Rd 5)',amount:0,game:'',comment:'',ts:Date.now()});
+    showToast('Data seeded — Rd 1 to Rd 5 loaded');
+  }
+  const gSnap = await gamesRef.get();
+  if(!gSnap.exists){
+    await gamesRef.set({list:games});
+  }else{
+    games = gSnap.data().list || games;
+  }
+}
+
+// ====================================================
+// FIREBASE LISTENERS
+// ====================================================
+function startListening(){
+  finesRef.orderBy("ts","desc").onSnapshot(snap=>{
+    fineLog = snap.docs.map(d=>(({id:d.id,...d.data()})));
+    renderTracker();
+    renderPaid();
+  }, err=>{
+    console.error("Firestore error:", err);
+    document.getElementById('sync-status').innerHTML='<span class="sync-dot off"></span>Offline';
+  });
+  gamesRef.onSnapshot(snap=>{
+    if(snap.exists){games=snap.data().list||games;renderGameSelect();}
+  });
+  auditRef.orderBy("ts","desc").onSnapshot(snap=>{
+    auditLog = snap.docs.map(d=>(({id:d.id,...d.data()})));
+    renderAudit();
+  });
+  paymentsRef.orderBy("ts","desc").onSnapshot(snap=>{
+    payments = snap.docs.map(d=>(({id:d.id,...d.data()})));
+    renderPaid();
+  });
+}
+
+// ====================================================
+// ADD / REMOVE
+// ====================================================
+async function addFine(){
+  if(!isAdmin)return;
+  const player=document.getElementById('f-player').value.trim();
+  const selVal=document.getElementById('f-fine').value;
+  const custAmt=document.getElementById('f-amt').value;
+  const comment=document.getElementById('f-comment').value.trim();
+  const game=document.getElementById('f-game').value;
+  if(!player||!selVal)return;
+  const[secName,idx]=selVal.split('|');
+  const sec=finesData.find(s=>s.section===secName);
+  const fine=sec?sec.items[parseInt(idx)]:null;
+  if(!fine)return;
+  const amount=custAmt?parseFloat(custAmt):fine.value;
+  const ts=Date.now();
+  await finesRef.doc(String(ts)).set({player,fine:fine.name,amount,game,comment,ts});
+  await logAudit('add',{player,fine:fine.name,amount,game,comment});
+  document.getElementById('f-player').value='';
+  document.getElementById('f-fine').selectedIndex=0;
+  document.getElementById('f-amt').value='';
+  document.getElementById('f-comment').value='';
+  showToast(`Fine added: ${player} — $${amount}`);
+}
+
+async function removeFine(id){
+  if(!isAdmin)return;
+  const fine=fineLog.find(f=>f.id===String(id));
+  await finesRef.doc(String(id)).delete();
+  if(fine) await logAudit('delete',{player:fine.player,fine:fine.fine,amount:fine.amount,game:fine.game,comment:''});
+  showToast('Fine removed');
+}
+
+async function addRound(){
+  if(!isAdmin)return;
+  const input=document.getElementById('new-round');
+  const name=input.value.trim();
+  if(!name||games.includes(name))return;
+  games.push(name);input.value='';
+  await gamesRef.set({list:games});
+  showToast('Round added: '+name);
+}
+
+// ====================================================
+// RENDER
+// ====================================================
+function renderFinesList(){
+  const c=document.getElementById('fines-list');let h='';
+  finesData.forEach(sec=>{
+    h+=`<div class="sec">${sec.section}</div>`;
+    sec.items.forEach(f=>{h+=`<div class="f-row"><div><div class="f-name">${f.name}</div>${f.note?`<div class="f-note">${f.note}</div>`:''}</div><div class="f-amt">${f.amount}</div></div>`});
+  });
+  h+=`<div style="text-align:center;padding:1.5rem 0;margin-top:1rem;border-top:1px solid rgba(212,168,67,0.12);font-size:.85rem;color:#8A8580">Individual fines can be gambled on <strong style="color:#F1C40F">ONE</strong> double-or-nothing coin flip</div>`;
+  c.innerHTML=h;
+}
+
+function populateSelects(){
+  const sel=document.getElementById('f-fine');let h='<option value="">Select a fine...</option>';
+  finesData.forEach(sec=>{h+=`<optgroup label="${sec.section}">`;sec.items.forEach((f,i)=>{h+=`<option value="${sec.section}|${i}">${f.name} (${f.amount})</option>`});h+='</optgroup>'});
+  sel.innerHTML=h;renderGameSelect();
+}
+function renderGameSelect(){
+  const gs=document.getElementById('f-game');
+  gs.innerHTML=games.map(g=>`<option value="${g}">${g}</option>`).join('');
+  gs.value=games[games.length-1];
+}
+
+function renderTracker(){
+  const fil=filter==="All"?fineLog:fineLog.filter(f=>f.game===filter);
+  const total=fil.reduce((s,f)=>s+f.amount,0);
+  const players=[...new Set(fil.map(f=>f.player))];
+  document.getElementById('s-total').textContent='$'+total;
+  document.getElementById('s-count').textContent=fil.length;
+  document.getElementById('s-players').textContent=players.length;
+  const allP=[...new Set(fineLog.map(f=>f.player))];
+  document.getElementById('pl').innerHTML=allP.map(p=>`<option value="${p}">`).join('');
+  const allG=["All",...new Set(fineLog.map(f=>f.game))];
+  document.getElementById('filters').innerHTML=allG.map(g=>`<button class="tag${g===filter?' on':''}" onclick="setFilter('${g}')">${g}</button>`).join('');
+
+  const lb={};fil.forEach(f=>{if(!lb[f.player])lb[f.player]={total:0,count:0};lb[f.player].total+=f.amount;lb[f.player].count++});
+  const sorted=Object.entries(lb).sort((a,b)=>b[1].total-a[1].total);
+  const lbEl=document.getElementById('leaderboard');
+  if(!sorted.length){lbEl.innerHTML=`<div class="empty"><div class="ico">🏆</div><p>No fines recorded yet.</p></div>`}
+  else{lbEl.innerHTML=sorted.map(([name,data],i)=>`<div class="lb-i"><div class="lb-r">${i+1}</div><div class="lb-n">${name}</div><div class="lb-c">${data.count} fine${data.count!==1?'s':''}</div><div class="lb-t">$${data.total}</div></div>`).join('')}
+
+  const grouped={};fil.forEach(f=>{if(!grouped[f.game])grouped[f.game]=[];grouped[f.game].push(f)});
+
+  // Fine type tally
+  const typeTally={};
+  fil.forEach(f=>{
+    let type=f.fine.replace(/\s*x\d+/gi,'').replace(/\s*\d+x/gi,'').trim();
+    const tl=type.toLowerCase();
+    if(tl.includes('teamo')||tl.includes('response to teamo'))type='Teamo / Late teamo';
+    else if(tl.includes('goal')&&!tl.includes('celebrating'))type='Goal';
+    else if(tl.includes('celebrating'))type='Not celebrating goal';
+    else if(tl.includes('donkey'))type='Donkey moment';
+    else if(tl.includes('miss port')||tl.includes('missing port'))type='Missing Port';
+    else if(tl.includes('motm'))type='MOTM';
+    else if(tl.includes('media'))type='Media';
+    else if(tl.includes('green card'))type='Green card';
+    else if(tl.includes('shed open'))type='Leaving shed open';
+    else if(tl.includes('polo'))type='Not wearing polo';
+    else if(tl.includes('staying after')||tl.includes('stay for drink'))type='Not staying after training';
+    else if(tl.includes('debut'))type='Debut';
+    else if(tl.includes('overseas')||tl.includes('holiday'))type='Overseas holiday';
+    else if(tl.includes('shorts'))type='Wrong shorts';
+    else if(tl.includes('rotation')||tl.includes('ignoring jd'))type='Ignoring JD in rotation';
+    if(!typeTally[type])typeTally[type]={count:0,total:0};
+    typeTally[type].count++;
+    typeTally[type].total+=f.amount;
+  });
+  const sortedTypes=Object.entries(typeTally).sort((a,b)=>b[1].total-a[1].total);
+  const maxTypeTotal=sortedTypes.length?sortedTypes[0][1].total:0;
+  const tallyEl=document.getElementById('fine-tally');
+  if(!sortedTypes.length){tallyEl.innerHTML=`<div class="empty"><p>No fines to tally.</p></div>`}
+  else{tallyEl.innerHTML=sortedTypes.map(([type,data])=>{
+    const pct=maxTypeTotal>0?Math.round((data.total/maxTypeTotal)*100):0;
+    return `<div class="tally-row"><div><div class="tally-name">${type}</div><div class="tally-bar"><div class="tally-bar-fill" style="width:${pct}%"></div></div></div><div class="tally-count">${data.count}×</div><div class="tally-total">$${data.total}</div></div>`
+  }).join('')}
+
+  const logEl=document.getElementById('fine-log');
+  if(!fil.length){logEl.innerHTML=`<div class="empty"><p>No fines to show.</p></div>`}
+  else{
+    let h='';
+    for(const[game,entries] of Object.entries(grouped)){
+      h+=`<div class="log-gh">${game}</div>`;
+      entries.forEach(f=>{
+        h+=`<div class="log-e"><div><span class="log-p">${f.player}</span><span class="log-f"> — ${f.fine}</span>${f.comment?`<div class="log-cmt">💬 ${f.comment}</div>`:''}</div><div class="log-a">$${f.amount}</div>${isAdmin?`<button class="log-x" onclick="removeFine('${f.id}')" title="Remove">✕</button>`:'<span></span>'}</div>`;
+      });
+    }
+    logEl.innerHTML=h;
+  }
+}
+
+// ====================================================
+// PAYMENTS
+// ====================================================
+async function recordPayment(){
+  if(!isAdmin)return;
+  const player=document.getElementById('pay-player').value.trim();
+  const amt=parseFloat(document.getElementById('pay-amt').value);
+  const note=document.getElementById('pay-note').value.trim();
+  if(!player||!amt||amt<=0)return;
+  await paymentsRef.add({player,amount:amt,note,ts:Date.now()});
+  document.getElementById('pay-player').value='';
+  document.getElementById('pay-amt').value='';
+  document.getElementById('pay-note').value='';
+  showToast(`Payment recorded: ${player} — $${amt}`);
+}
+
+async function removePayment(id){
+  if(!isAdmin)return;
+  await paymentsRef.doc(id).delete();
+  showToast('Payment removed');
+}
+
+function renderPaid(){
+  // Build per-player totals from fines
+  const fined={};
+  fineLog.forEach(f=>{
+    if(!fined[f.player])fined[f.player]=0;
+    fined[f.player]+=f.amount;
+  });
+  // Build per-player paid totals
+  const paid={};
+  payments.forEach(p=>{
+    if(!paid[p.player])paid[p.player]=0;
+    paid[p.player]+=p.amount;
+  });
+  // Merge all players
+  const allPlayers=[...new Set([...Object.keys(fined),...Object.keys(paid)])].sort();
+
+  // Update datalist for pay form
+  document.getElementById('pay-pl').innerHTML=allPlayers.map(p=>`<option value="${p}">`).join('');
+
+  // Summary stats
+  const totalFined=Object.values(fined).reduce((s,v)=>s+v,0);
+  const totalPaid=Object.values(paid).reduce((s,v)=>s+v,0);
+  const totalOwed=Math.max(0,totalFined-totalPaid);
+  document.getElementById('p-total-fined').textContent='$'+totalFined.toFixed(0);
+  document.getElementById('p-total-paid').textContent='$'+totalPaid.toFixed(0);
+  document.getElementById('p-total-owed').textContent='$'+totalOwed.toFixed(0);
+
+  const el=document.getElementById('paid-list');
+  if(!allPlayers.length){el.innerHTML=`<div class="empty"><div class="ico">💰</div><p>No data yet.</p></div>`;return}
+
+  // Sort by amount owed descending
+  const rows=allPlayers.map(name=>{
+    const f=fined[name]||0;
+    const p=paid[name]||0;
+    const owed=Math.max(0,f-p);
+    return{name,fined:f,paid:p,owed};
+  }).sort((a,b)=>b.owed-a.owed);
+
+  el.innerHTML=rows.map(r=>{
+    const pct=r.fined>0?Math.min(100,Math.round((r.paid/r.fined)*100)):100;
+    const cleared=r.owed<=0;
+    // Recent payments for this player
+    const playerPays=payments.filter(p=>p.player===r.name);
+    const payHistory=playerPays.length?
+      playerPays.map(p=>`<span style="font-size:.75rem;color:var(--dim)">+$${p.amount}${p.note?' — '+p.note:''}</span>`).join(' &nbsp;'):'';
+    return `<div class="paid-i">
+      <div>
+        <div class="paid-n">${r.name}${cleared?` <span style="font-size:.7rem;color:var(--grn);font-family:'Oswald',sans-serif;letter-spacing:1px">✓ CLEAR</span>`:''}</div>
+        <div class="paid-bar-wrap"><div class="paid-bar-fill" style="width:${pct}%"></div></div>
+        ${payHistory?`<div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:4px">${payHistory}</div>`:''}
+      </div>
+      <div class="paid-col fined">$${r.fined}</div>
+      <div class="paid-col paid">$${r.paid}</div>
+      <div class="paid-col ${cleared?'clear':'owed'}">${cleared?'✓':'$'+r.owed}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderAudit(){
+  const fil=auditFilter==="All"?auditLog:auditLog.filter(a=>a.action===auditFilter);
+  const types=["All","add","delete","seed"];
+  document.getElementById('audit-filters').innerHTML=types.map(t=>
+    `<button class="tag${t===auditFilter?' on':''}" onclick="setAuditFilter('${t}')">${t==='All'?'All':t==='add'?'Added':t==='delete'?'Deleted':'Seeded'}</button>`
+  ).join('');
+  const el=document.getElementById('audit-log');
+  if(!fil.length){el.innerHTML=`<div class="empty"><p>No audit entries yet.</p></div>`;return}
+  el.innerHTML=fil.map(a=>{
+    const badge=a.action==='add'?'add':a.action==='delete'?'del':'seed';
+    const label=a.action==='add'?'Added':a.action==='delete'?'Deleted':'Seeded';
+    const icon=a.action==='add'?'➕':a.action==='delete'?'🗑️':'📦';
+    return `<div class="audit-e">
+      <span class="audit-badge ${badge}">${icon} ${label}</span>
+      <div class="audit-detail">
+        <span class="player">${a.player}</span>
+        ${a.fine?` — <span class="info">${a.fine}</span>`:''}
+        ${a.amount?` <span class="info">($${a.amount})</span>`:''}
+        ${a.game?` <span class="info">· ${a.game}</span>`:''}
+      </div>
+      <div class="audit-time">${formatTime(a.ts)}</div>
+    </div>`;
+  }).join('');
+}
+
+function setFilter(g){filter=g;renderTracker()}
+function setAuditFilter(g){auditFilter=g;renderAudit()}
+
+function flipCoin(){
+  const coin=document.getElementById('coin'),res=document.getElementById('c-res');
+  coin.classList.remove('flip');res.textContent='';res.className='c-res';
+  void coin.offsetWidth;coin.classList.add('flip');
+  setTimeout(()=>{
+    const win=Math.random()<0.5;
+    res.textContent=win?'🎉 CLEARED! Fine wiped!':'💀 DOUBLED! Pay up!';
+    res.className='c-res '+(win?'win':'lose');
+    coin.textContent=win?'✓':'✕';
+    setTimeout(()=>{coin.textContent='$'},2000);
+  },800);
+}
+
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement.id==='f-comment')addFine()});
+
+async function init(){
+  renderFinesList();
+  populateSelects();
+  updateRoleUI();
+  await seedIfEmpty();
+  startListening();
+}
+init();
+</script>
+</body>
+</html>
