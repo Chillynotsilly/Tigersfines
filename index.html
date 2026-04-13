@@ -318,38 +318,47 @@ function showToast(msg){
 // FINES SCHEDULE
 // ====================================================
 const finesData = [
-  {section:"Teamo & Attendance",items:[
-    {name:"Late teamo / No response to teamo",amount:"$1–$2",value:2,note:"Not responding or late responding to weekly team message."},
-    {name:"First week teamo",amount:"$5",value:5,note:"First offence of the season."},
-    {name:"Miss Port / Missing trip",amount:"$5–$20",value:5,note:"Missing a team trip or Port weekend. Amount depends on circumstances."},
-    {name:"Overseas holiday during season",amount:"$2",value:2},
-    {name:"Not staying after training",amount:"$1",value:1,note:"Leaving without having a drink with the boys."},
+  {section:"$1 Fines",items:[
+    {name:"Forget sock / shoe / shin pad",amount:"$1",value:1,note:"Per item forgotten."},
+    {name:"Miss training",amount:"$1",value:1},
+    {name:"Miss game",amount:"$1",value:1},
+    {name:"Goal",amount:"$1",value:1,note:"Per goal scored."},
+    {name:"Leave training or game without staying for beer/drink",amount:"$1",value:1},
+    {name:"Media coverage outside Tigers Social Media",amount:"$1",value:1},
+    {name:"Miss sitter",amount:"$1",value:1,note:"Must be agreed at court."},
+    {name:"Not come to pub",amount:"$1",value:1},
+    {name:"Miss an easy trap",amount:"$1",value:1,note:"Must be agreed at court."},
   ]},
-  {section:"Match Day",items:[
-    {name:"Goal",amount:"$1",value:1,note:"Per goal scored. Yes, you get fined for scoring."},
-    {name:"MOTM",amount:"$2",value:2,note:"Any grade — man of the match gets fined."},
+  {section:"$2 Fines",items:[
+    {name:"MOTM",amount:"$2",value:2,note:"Any grade."},
+    {name:"Miss open goal",amount:"$2",value:2},
     {name:"Green card",amount:"$2",value:2},
-    {name:"Missed sitter",amount:"$2",value:2,note:"Must be unanimous agreement at court."},
-    {name:"Donkey moment",amount:"$5",value:5,note:"On-field brain explosion. Unanimous agreement."},
-    {name:"Not celebrating goal in A50",amount:"$2",value:2,note:"Per offence."},
-    {name:"Not wearing polo",amount:"$1",value:1},
-    {name:"Wrong shorts (HNSW, uni, other clubs)",amount:"$2",value:2},
-    {name:"Forgot stick",amount:"$10",value:10},
-    {name:"Umpiring",amount:"$1",value:1},
+    {name:"Last to celebrate goalscorer",amount:"$2",value:2},
+    {name:"Don't reply to teamo",amount:"$2",value:2},
+    {name:"Give away a stroke",amount:"$2",value:2},
+    {name:"Fines committee votes it is a fineable offence",amount:"$2",value:2},
+    {name:"Other Newcastle team kit at training",amount:"$2",value:2},
+    {name:"Error leading to a goal",amount:"$2",value:2,note:"Must be agreed at court."},
+    {name:"Late (per 5 mins)",amount:"$2",value:2,note:"$2 per every 5 minutes late."},
+    {name:"No polo",amount:"$2",value:2},
   ]},
-  {section:"Off Field",items:[
-    {name:"Leaving shed open",amount:"$10",value:10},
-    {name:"Media",amount:"$1",value:1,note:"Hockey Australia or club media duties."},
-    {name:"Debut (Prem or 2nd grade)",amount:"$1",value:1},
-    {name:"Getting a GF",amount:"$5",value:5},
-    {name:"Off field injury",amount:"$2",value:2},
-    {name:"50 games milestone",amount:"$2",value:2},
-    {name:"Shit haircut",amount:"$2",value:2},
-    {name:"Ignoring JD in rotation",amount:"$1",value:1},
+  {section:"$5 Fines",items:[
+    {name:"Yellow card",amount:"$5",value:5},
+    {name:"Forget playing kit",amount:"$5",value:5},
+    {name:"Donkey moment of the match",amount:"$5",value:5,note:"Unanimous agreement at court."},
+    {name:"Kicked out of pub on night out (teammate present)",amount:"$5",value:5},
+    {name:"Injured at another sport",amount:"$5",value:5},
   ]},
-  {section:"Miscellaneous",items:[
-    {name:"Any other infringement raised at court",amount:"TBD",value:5,note:"Final decision and amount lies with the finesmaster."},
-  ]}
+  {section:"$10 Fines",items:[
+    {name:"Miss a stroke",amount:"$10",value:10},
+    {name:"Forget stick",amount:"$10",value:10},
+    {name:"Miss game due to bender/hangover",amount:"$10",value:10,note:"Doubles each time."},
+  ]},
+  {section:"$30 Fines",items:[
+    {name:"Red card",amount:"$30",value:30},
+    {name:"Suspension",amount:"$30",value:30},
+    {name:"Lose playing kit",amount:"$30",value:30},
+  ]},
 ];
 
 // ====================================================
@@ -545,21 +554,36 @@ function renderTracker(){
   fil.forEach(f=>{
     let type=f.fine.replace(/\s*x\d+/gi,'').replace(/\s*\d+x/gi,'').trim();
     const tl=type.toLowerCase();
-    if(tl.includes('teamo')||tl.includes('response to teamo'))type='Teamo / Late teamo';
-    else if(tl.includes('goal')&&!tl.includes('celebrating'))type='Goal';
-    else if(tl.includes('celebrating'))type='Not celebrating goal';
+    if(tl.includes('teamo')||tl.includes('response to teamo'))type='Don\'t reply to teamo';
+    else if(tl.includes('goal')&&!tl.includes('open')&&!tl.includes('celebrat'))type='Goal';
+    else if(tl.includes('open goal')||tl.includes('sitter'))type='Miss open goal / sitter';
+    else if(tl.includes('celebrat'))type='Last to celebrate goalscorer';
     else if(tl.includes('donkey'))type='Donkey moment';
-    else if(tl.includes('miss port')||tl.includes('missing port'))type='Missing Port';
-    else if(tl.includes('motm'))type='MOTM';
-    else if(tl.includes('media'))type='Media';
+    else if(tl.includes('miss port')||tl.includes('missing port')||tl.includes('miss stroke')||tl.includes('miss a stroke'))type='Miss a stroke';
+    else if(tl.includes('miss game')&&(tl.includes('bender')||tl.includes('hangover')))type='Miss game due to bender/hangover';
+    else if(tl.includes('miss game')||tl.includes('missed game'))type='Miss game';
+    else if(tl.includes('miss training')||tl.includes('missed training'))type='Miss training';
+    else if(tl.includes('motm')||tl.includes('man of the match')||tl.includes('player of'))type='MOTM';
+    else if(tl.includes('media'))type='Media coverage';
     else if(tl.includes('green card'))type='Green card';
-    else if(tl.includes('shed open'))type='Leaving shed open';
-    else if(tl.includes('polo'))type='Not wearing polo';
-    else if(tl.includes('staying after')||tl.includes('stay for drink'))type='Not staying after training';
+    else if(tl.includes('yellow card'))type='Yellow card';
+    else if(tl.includes('red card'))type='Red card';
+    else if(tl.includes('suspension'))type='Suspension';
+    else if(tl.includes('polo'))type='No polo';
+    else if(tl.includes('staying')||tl.includes('stay for')||tl.includes('pub')||tl.includes('beer')||tl.includes('drink'))type='Leave without staying for beer/drink';
     else if(tl.includes('debut'))type='Debut';
     else if(tl.includes('overseas')||tl.includes('holiday'))type='Overseas holiday';
-    else if(tl.includes('shorts'))type='Wrong shorts';
-    else if(tl.includes('rotation')||tl.includes('ignoring jd'))type='Ignoring JD in rotation';
+    else if(tl.includes('shorts')||tl.includes('kit at training'))type='Other Newcastle team kit';
+    else if(tl.includes('forget stick')||tl.includes('forgot stick'))type='Forget stick';
+    else if(tl.includes('forget')&&(tl.includes('kit')||tl.includes('playing')))type='Forget playing kit';
+    else if(tl.includes('forget')||tl.includes('forgot'))type='Forget sock/shoe/shin pad';
+    else if(tl.includes('lose')&&tl.includes('kit'))type='Lose playing kit';
+    else if(tl.includes('stroke')||tl.includes('give away'))type='Give away a stroke';
+    else if(tl.includes('error leading')||tl.includes('leading to a goal')||tl.includes('leading to goal'))type='Error leading to a goal';
+    else if(tl.includes('late'))type='Late';
+    else if(tl.includes('kicked out'))type='Kicked out of pub';
+    else if(tl.includes('injured'))type='Injured at another sport';
+    else if(tl.includes('easy trap')||tl.includes('trap'))type='Miss an easy trap';
     if(!typeTally[type])typeTally[type]={count:0,total:0};
     typeTally[type].count++;
     typeTally[type].total+=f.amount;
