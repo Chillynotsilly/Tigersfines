@@ -105,7 +105,10 @@
   .audit-filter{margin-bottom:1rem}
   .footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--dim);letter-spacing:1px;border-top:1px solid var(--bdr);margin-top:2rem}
   /* PAID TAB */
-  .paid-i{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:.7rem;padding:.85rem 1rem;margin:.3rem 0;background:var(--card);border-radius:10px;border:1px solid transparent;transition:border .2s}
+  .chip{display:inline-flex;align-items:center;gap:5px;background:var(--gold);color:var(--blk);font-family:'Oswald',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.5px;padding:.3rem .6rem .3rem .8rem;border-radius:20px;white-space:nowrap}
+  .chip button{background:none;border:none;cursor:pointer;color:var(--blk);font-size:.85rem;line-height:1;padding:0;opacity:.7;transition:opacity .15s}
+  .chip button:hover{opacity:1}
+  .chip-none{font-size:.8rem;color:var(--dim);padding:.3rem 0}grid-template-columns:1fr auto auto auto;align-items:center;gap:.7rem;padding:.85rem 1rem;margin:.3rem 0;background:var(--card);border-radius:10px;border:1px solid transparent;transition:border .2s}
   .paid-i:hover{border-color:var(--bdr);background:var(--ch)}
   .paid-n{font-weight:600;font-size:.95rem}
   .paid-sub{font-size:.78rem;color:var(--dim);margin-top:2px}
@@ -187,16 +190,23 @@
     </div>
     <div id="admin-form" style="display:none">
       <div class="sec">Add a Fine</div>
-      <div class="form-grid r2">
-        <input type="text" id="f-player" placeholder="Player name..." list="pl" autocomplete="off">
+      <!-- Player picker -->
+      <div style="display:flex;gap:.5rem;margin-bottom:.5rem;align-items:center">
+        <input type="text" id="f-player-input" placeholder="Type a name and press Enter..." list="pl" autocomplete="off" style="flex:1" onkeydown="if(event.key==='Enter'){event.preventDefault();addPlayerChip()}">
         <datalist id="pl"></datalist>
-        <select id="f-fine"></select>
+        <button class="btn btn-sm" onclick="addPlayerChip()" style="flex:0 0 auto;white-space:nowrap">+ Add</button>
       </div>
-      <div class="form-grid r3" style="margin-top:.5rem">
-        <input type="number" id="f-amt" placeholder="$ amt">
+      <!-- Selected player chips -->
+      <div id="player-chips" style="display:flex;flex-wrap:wrap;gap:6px;min-height:28px;margin-bottom:.7rem"></div>
+      <!-- Fine, amount, comment -->
+      <div class="form-grid r2">
+        <select id="f-fine"></select>
+        <input type="number" id="f-amt" placeholder="$ override (optional)">
+      </div>
+      <div style="margin-top:.5rem;margin-bottom:.5rem">
         <input type="text" id="f-comment" placeholder="Add a comment... (optional)">
       </div>
-      <div class="form-act" style="margin-top:.5rem">
+      <div class="form-act" style="margin-top:.3rem">
         <select id="f-game" style="width:auto;min-width:90px;flex:0 0 auto"></select>
         <button class="btn" onclick="addFine()" style="flex:0 0 auto">+ Add Fine</button>
       </div>
@@ -462,29 +472,72 @@ function startListening(){
 }
 
 // ====================================================
+// PLAYER CHIPS
+// ====================================================
+let selectedPlayers = [];
+
+function addPlayerChip(){
+  const input = document.getElementById('f-player-input');
+  const name = input.value.trim();
+  if(!name) return;
+  if(!selectedPlayers.includes(name)){
+    selectedPlayers.push(name);
+    renderChips();
+  }
+  input.value = '';
+  input.focus();
+}
+
+function removeChip(name){
+  selectedPlayers = selectedPlayers.filter(p => p !== name);
+  renderChips();
+}
+
+function renderChips(){
+  const el = document.getElementById('player-chips');
+  if(!selectedPlayers.length){
+    el.innerHTML = '<span class="chip-none">No players selected — type a name above</span>';
+    return;
+  }
+  el.innerHTML = selectedPlayers.map(name =>
+    `<span class="chip">${name}<button onclick="removeChip('${name.replace(/'/g,"\\'")}')">✕</button></span>`
+  ).join('');
+}
+
+// ====================================================
 // ADD / REMOVE
 // ====================================================
 async function addFine(){
-  if(!isAdmin)return;
-  const player=document.getElementById('f-player').value.trim();
-  const selVal=document.getElementById('f-fine').value;
-  const custAmt=document.getElementById('f-amt').value;
-  const comment=document.getElementById('f-comment').value.trim();
-  const game=document.getElementById('f-game').value;
-  if(!player||!selVal)return;
-  const[secName,idx]=selVal.split('|');
-  const sec=finesData.find(s=>s.section===secName);
-  const fine=sec?sec.items[parseInt(idx)]:null;
-  if(!fine)return;
-  const amount=custAmt?parseFloat(custAmt):fine.value;
-  const ts=Date.now();
-  await finesRef.doc(String(ts)).set({player,fine:fine.name,amount,game,comment,ts});
-  await logAudit('add',{player,fine:fine.name,amount,game,comment});
-  document.getElementById('f-player').value='';
-  document.getElementById('f-fine').selectedIndex=0;
-  document.getElementById('f-amt').value='';
-  document.getElementById('f-comment').value='';
-  showToast(`Fine added: ${player} — $${amount}`);
+  if(!isAdmin) return;
+  if(!selectedPlayers.length){ showToast('Add at least one player'); return; }
+  const selVal = document.getElementById('f-fine').value;
+  const custAmt = document.getElementById('f-amt').value;
+  const comment = document.getElementById('f-comment').value.trim();
+  const game = document.getElementById('f-game').value;
+  if(!selVal) return;
+  const [secName, idx] = selVal.split('|');
+  const sec = finesData.find(s => s.section === secName);
+  const fine = sec ? sec.items[parseInt(idx)] : null;
+  if(!fine) return;
+  const amount = custAmt ? parseFloat(custAmt) : fine.value;
+  const batch = db.batch();
+  const baseTs = Date.now();
+  selectedPlayers.forEach((player, i) => {
+    const ts = baseTs + i;
+    const ref = finesRef.doc(String(ts));
+    batch.set(ref, {player, fine: fine.name, amount, game, comment, ts});
+  });
+  await batch.commit();
+  for(let i = 0; i < selectedPlayers.length; i++){
+    await logAudit('add', {player: selectedPlayers[i], fine: fine.name, amount, game, comment});
+  }
+  const count = selectedPlayers.length;
+  showToast(`Fine added for ${count} player${count > 1 ? 's' : ''} — $${amount} each`);
+  selectedPlayers = [];
+  renderChips();
+  document.getElementById('f-fine').selectedIndex = 0;
+  document.getElementById('f-amt').value = '';
+  document.getElementById('f-comment').value = '';
 }
 
 async function removeFine(id){
@@ -538,6 +591,8 @@ function renderTracker(){
   document.getElementById('s-players').textContent=players.length;
   const allP=[...new Set(fineLog.map(f=>f.player))];
   document.getElementById('pl').innerHTML=allP.map(p=>`<option value="${p}">`).join('');
+  // init chips placeholder if empty
+  if(!document.getElementById('player-chips').innerHTML) renderChips();
   const allG=["All",...new Set(fineLog.map(f=>f.game))];
   document.getElementById('filters').innerHTML=allG.map(g=>`<button class="tag${g===filter?' on':''}" onclick="setFilter('${g}')">${g}</button>`).join('');
 
